@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.choose-item {
+    position: relative;
+    overflow: hidden; /* Ensures the effect stays within the div */
+    background-color: #fff; /* Default background */
+    transition: transform 0.3s ease; /* Smooth scaling */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  }
+  
+  .choose-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #deb271, #e0dcdc);
+    transform: translateY(100%);
+    transition: transform 0.5s ease-in-out; /* Smooth background transition */
+    z-index: 0; /* Behind the content */
+    
+  }
+  
+  .choose-item:hover::before {
+    transform: translateY(0); /* Move the gradient to cover the div */
+  }
+  
+  .choose-item:hover {
+    transform: scale(1.05); /* Slightly scale up the div */
+  }
+  
+  .choose-item i,
+  .choose-item h3,
+  .choose-item p {
+    position: relative;
+    z-index: 1; /* Ensure text and icons are above the background */
+    transition: color 0.3s ease; /* Smooth color transition */
+  }
+  
+  .choose-item:hover h3,
+  .choose-item:hover p {
+    color: #fff; /* Change text color on hover */
+  }
+  
+
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* X-offset, Y-offset, blur-radius, color */
+  }
