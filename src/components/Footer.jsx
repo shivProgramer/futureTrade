@@ -137,7 +137,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright Area */}
-      <div className="copyright-area bg-gray-800 py-4 mt-8 relative">
+      <div className="copyright-area bg-black py-4 mt-8 relative">
         <div className="container mx-auto px-8">
           <p className="text-center text-sm">
             Copyright © {new Date().getFullYear()} Future trade pvt ltd. All
