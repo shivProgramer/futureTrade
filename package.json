@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dabeng/react-orgchart": "^1.0.3",
+    "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
+    "base-64": "^1.0.0",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.473.0",
     "react": "^18.3.1",
@@ -17,7 +21,11 @@
     "react-d3-tree": "^3.6.2",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
-    "react-router-dom": "^7.1.1"
+    "react-organizational-chart": "^2.2.1",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1",
+    "react-toastify": "^11.0.3",
+    "react-top-loading-bar": "^3.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

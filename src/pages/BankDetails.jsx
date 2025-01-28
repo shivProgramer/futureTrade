@@ -2,10 +2,70 @@ import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import daily from "../assets/dailyincome.json";
 import SideBarHeader from "./SideBarHeader";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../components/Loader";
+import { BankCrteateBank, getBankData } from "../redux/slice/DashboardAndUser_slice";
+import { showToast } from "../utils/Config";
 
 const BankDetails = () => {
+  const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [showFields, setShowFields] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("userData"));
+
+  const [formData, setFormData] = useState({
+    user_id: userData?.user_id || "",
+    account_holder: "",
+    account_no: "",
+    bank_name: "",
+    branch_name: "",
+    ifsc_code: "",
+  });
+
+  const bankDetails = useSelector(
+    (state) => state.dashboard_profile?.bankData?.data
+  );
+  const loading = useSelector((state) => state.dashboard_profile?.loading);
+
+
+
+  // Handle form field changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      user_id: userData?.user_id,
+      account_holder: bankDetails?.account_holder || "",
+      account_no: bankDetails?.account_no || "",
+      bank_name: bankDetails?.bank_name || "",
+      branch_name: bankDetails?.branch_name || "",
+      ifsc_code: bankDetails?.ifsc_code || "",
+    }));
+  }, [bankDetails]);
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await dispatch(BankCrteateBank(formData));
+      if (res?.payload?.status === 200) {
+        showToast("Bank Data updated Successfully", "success");
+        dispatch(getBankData(userData?.user_id));
+      } else {
+        showToast(res?.payload?.msg, "error");
+      }
+    } catch (error) {
+      showToast(error, "error");
+    }
+  };
 
   useEffect(() => {
     const formTimeout = setTimeout(() => {
@@ -22,11 +82,16 @@ const BankDetails = () => {
     };
   }, []);
 
+  useEffect(() => {
+    dispatch(getBankData(userData?.user_id));
+  }, []);
+
   return (
     <>
+      {loading && <Loader loading={loading} />}
       <SideBarHeader />
 
-      <div className="  flex items-center justify-center">
+      <div className="flex items-center justify-center">
         <div
           className={`transition-all duration-500 ease-in-out transform ${
             showForm ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -43,14 +108,34 @@ const BankDetails = () => {
             />
           </div>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="space-y-6">
               {[
-                { label: "Account Holder Name", placeholder: "e.g., John Doe" },
-                { label: "Account Number", placeholder: "e.g., 1234567890" },
-                { label: "Bank Name", placeholder: "e.g., ABC Bank" },
-                { label: "Branch", placeholder: "e.g., Downtown Branch" },
-                { label: "IFSC Code", placeholder: "e.g., ABCD0123456" },
+                {
+                  name: "account_holder",
+                  label: "Account Holder Name",
+                  placeholder: "e.g., John Doe",
+                },
+                {
+                  name: "account_no",
+                  label: "Account Number",
+                  placeholder: "e.g., 1234567890",
+                },
+                {
+                  name: "bank_name",
+                  label: "Bank Name",
+                  placeholder: "e.g., ABC Bank",
+                },
+                {
+                  name: "branch_name",
+                  label: "branch_name",
+                  placeholder: "e.g., Downtown branch_name",
+                },
+                {
+                  name: "ifsc_code",
+                  label: "IFSC Code",
+                  placeholder: "e.g., ABCD0123456",
+                },
               ].map((field, index) => (
                 <div
                   key={index}
@@ -66,7 +151,10 @@ const BankDetails = () => {
                   </label>
                   <input
                     type="text"
+                    name={field.name}
                     placeholder={field.placeholder}
+                    value={formData[field.name]}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
                   />
                 </div>

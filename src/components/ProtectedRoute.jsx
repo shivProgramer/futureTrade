@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 const isAuthenticated = () => {
-  const token = localStorage.getItem('isLogin'); 
+  const token = localStorage.getItem('isLoggedIn'); 
   return token !== null;
 };
 

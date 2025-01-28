@@ -4,41 +4,51 @@ import daily from "../assets/dailyincome.json";
 import SideBarHeader from "./SideBarHeader";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileData } from "../redux/slice/DashboardAndUser_slice";
+import Loader from "../components/Loader";
 const Wallet = () => {
   const nevigate = useNavigate();
-  const data = [
-    { title: "Deposits", amount: "₹0.00" },
-    { title: "ROI", amount: "₹0.00" },
-    { title: "Salary", amount: "₹0.00" },
-    { title: "CashBack", amount: "₹0.00" },
-    { title: "Bonus Reward", amount: "₹0.00" },
-  ];
-
+  const dispatch = useDispatch();
   const [showCards, setShowCards] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   useEffect(() => {
-    // Delays the animation slightly
     const timeout = setTimeout(() => {
       setShowCards(true);
-    }, 200); // 200ms delay
-    return () => clearTimeout(timeout); // Cleanup on unmount
+    }, 200);
+    return () => clearTimeout(timeout);
   }, []);
+    // Fetch data from Redux
+  const allProfileData = useSelector((state) => state.dashboard_profile?.profileData?.data);
+  const loading = useSelector((state) => state.dashboard_profile?.loading);
+
 
   const handleWithdrawal = () => {
     nevigate("/admin/withdrawal");
   };
-
   const handleAddCash = () => {
     nevigate("/admin/add-cash");
   };
-
   const handleTransaction = () => {
     nevigate("/admin/transaction-history");
   };
+  // Fetch profile data on component mount
+  useEffect(() => {
+      dispatch(getProfileData(userData?.user_id));
+  }, [dispatch, userData?.user_id]);
 
+  const data = [
+    { title: "Deposits", amount: "₹0.00" },
+    { title: "ROI", amount: allProfileData?.roi_comission },
+    { title: "Salary", amount: allProfileData?.salary },
+    { title: "CashBack", amount: allProfileData?.cashback },
+    { title: "Bonus Reward", amount: allProfileData?.bonus },
+  ];
 
   return (
     <>
+      {loading && <Loader loading={loading} />}
       {" "}
       <SideBarHeader />
       <div className="p-4 text-black">
@@ -47,7 +57,7 @@ const Wallet = () => {
           <div className="flex justify-between items-center">
             <div>
               <h2 className="text-lg font-semibold">Total Balance</h2>
-              <p className="text-2xl font-bold text-green-600">₹110000.00</p>
+              <p className="text-2xl font-bold text-green-600">{allProfileData?.wallet}</p>
             </div>
           </div>
         </div>

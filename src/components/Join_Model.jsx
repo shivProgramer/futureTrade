@@ -1,78 +1,195 @@
-import React from "react";
-import { FaTimes } from "react-icons/fa"; // Import the close icon from react-icons
+import React, { useEffect, useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import wallet from "../assets/wallet.json";
 import Lottie from "lottie-react";
+import wallet from "../assets/wallet.json";
+import cashback from "../assets/projectsuccess.json";
+import Loader from "./Loader";
+import {
+  CreateJoinProdect,
+  getjoinPackage,
+  getProfileData,
+} from "../redux/slice/DashboardAndUser_slice";
+import { useDispatch, useSelector } from "react-redux";
+import { showToast } from "../utils/Config";
+
 const Join_Model = ({ isOpen, onClose }) => {
-  const nevigate = useNavigate();
-const handleTrnasaction = () =>{
-  nevigate("/admin/transaction-history")
-}
+  const dispatch = useDispatch();
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedPackage, setSelectedPackage] = useState("");
+  const navigate = useNavigate();
+  const allProfileData = useSelector(
+    (state) => state.dashboard_profile?.profileData?.data
+  );
+  const Prodectpackage = useSelector(
+    (state) => state.dashboard_profile?.allJoinPacakge?.data
+  );
+  const loading = useSelector((state) => state.DashboardAndUser_slice?.loading);
+
+  const handleTransaction = () => {
+    navigate("/admin/transaction-history");
+  };
+
+  useEffect(() => {
+    setSelectedPackage("");
+    setSelectedCategory("");
+  }, []);
+
+  const handleJoin = async () => {
+    if (!selectedCategory || !selectedPackage) {
+      showToast("Please select a category and a package", "error");
+      return;
+    }
+    let formData = {
+      user_id: userData?.user_id,
+      project_id: selectedPackage,
+    };
+    try {
+      const res = await dispatch(CreateJoinProdect(formData));
+      if (res?.payload?.status === 200) {
+        showToast("join successfully", "success");
+      } else {
+        showToast(res?.payload?.msg, "error");
+      }
+    } catch (error) {
+      showToast(error, "error");
+    }
+    onClose();
+  };
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const handlePackageChange = (e) => {
+    setSelectedPackage(e.target.value);
+  };
+  // Fetch profile data on component mount
+  useEffect(() => {
+    dispatch(getProfileData(userData?.user_id));
+  }, [dispatch, userData?.user_id]);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      dispatch(getjoinPackage(selectedCategory));
+    }
+  }, [selectedCategory]);
+
   return (
-    <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#1F2937] bg-opacity-50 transition-opacity duration-500 ${
-        isOpen
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none"
-      }`}
-    >
+    <>
+      {" "}
+      {loading && <Loader loading={loading} />}
       <div
-        className={`bg-[#1F2937] rounded-lg shadow-lg p-6 w-11/12 sm:w-[500px] max-w-full transform transition-all duration-700 ${
-          isOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-[#1F2937] bg-opacity-50 transition-opacity duration-500 ${
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Close Button in Top-Right Corner */}
-        <button
-          className="absolute top-2 right-2 text-white text-2xl hover:text-gray-400"
-          onClick={onClose}
+        <div
+          className={`relative bg-[#1F2937] rounded-lg shadow-lg border-t-4 border-green-600 p-6 w-11/12 sm:w-[500px] max-w-full transform transition-all duration-700 ${
+            isOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"
+          }`}
         >
-          <FaTimes />
-        </button>
+          {/* Close Button */}
+          <button
+            className="absolute top-2 right-2 text-white text-2xl hover:text-gray-400"
+            onClick={onClose}
+          >
+            <FaTimes />
+          </button>
 
-        <h2 className="text-white text-lg font-bold mb-4">Modal Title</h2>
-
-        {/* Wallet Section */}
-        <div className="mb-4">
-          <label className="text-gray-300 block mb-2">Wallet:</label>{" "}
-          <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 rounded-md flex justify-between items-center">
-            ₹110000.00   <Lottie className="cursor-pointer"
-                animationData={wallet}
-                style={{ width: "20px", height: "20px" }}
-                onClick={handleTrnasaction}
+          {isAnimating ? (
+            // Lottie Animation with Dark Background
+            <div className="absolute inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 rounded-lg">
+              <Lottie
+                animationData={cashback}
+                style={{ width: "250px", height: "250px" }}
               />
-          </div>
-         
-            
-           
-        </div>
+            </div>
+          ) : (
+            <>
+              {/* Modal Content */}
+              <h2 className="text-white text-lg font-bold mb-4">
+                Join a Package
+              </h2>
 
-        {/* Categories Section */}
-        <div className="mb-4">
-          <label className="text-gray-300 block mb-2">Categories:</label>
-          <select className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 w-full rounded-md">
-            <option>Select</option>
-            {/* Add options dynamically */}
-          </select>
-        </div>
+              {/* Wallet Section */}
+              <div className="mb-4">
+                <label className="text-gray-300 block mb-2">Wallet:</label>
+                <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 rounded-md flex justify-between items-center">
+                  ₹ {allProfileData?.wallet}
+                  <Lottie
+                    className="cursor-pointer"
+                    animationData={wallet}
+                    style={{ width: "20px", height: "20px" }}
+                    onClick={handleTransaction}
+                  />
+                </div>
+              </div>
 
-        {/* Packages Section */}
-        <div className="mb-6">
-          <label className="text-gray-300 block mb-2">Packages:</label>
-          <select className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 w-full rounded-md">
-            <option>Select</option>
-            {/* Add options dynamically */}
-          </select>
-        </div>
+              {/* Categories Section */}
+              <div className="mb-4">
+                <label className="text-gray-300 block mb-2">Categories: <span className="text-red-600 ml-1"> * </span></label>
+                <select
+                  className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 w-full rounded-md"
+                  value={selectedCategory}
+                  onChange={handleCategoryChange}
+                >
+                  <option value="">Select</option>
+                  <option value="1" className="text-xs">
+                    Nifty50
+                  </option>
+                  <option value="2" className="text-xs">
+                    Bank Nifty
+                  </option>
+                  <option value="3" className="text-xs">
+                    USD
+                  </option>
+                  <option value="4" className="text-xs">
+                    Bitcoin
+                  </option>
+                </select>
+              </div>
 
-        {/* Join Button */}
-        <button
-          className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition"
-          onClick={onClose}
-        >
-          Join
-        </button>
+              {/* Packages Section */}
+              <div className="mb-6">
+                <label className="text-gray-300 block mb-2">Packages:  <span className="text-red-600 ml-1"> * </span></label>
+                <select
+                  className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 w-full rounded-md"
+                  value={selectedPackage}
+                  onChange={handlePackageChange}
+                >
+                  <option value="">Select</option>
+                  {Prodectpackage &&
+                    Prodectpackage.map((ele, index) => (
+                      <option
+                        className="flex justify-between items-center"
+                        key={index}
+                        value={ele.id}
+                      >
+                        <div>
+                          <p>{ele?.product_name} </p>
+                        </div>
+                      </option>
+                    ))}
+                </select>
+              </div>
+
+              {/* Join Button */}
+              <button
+                className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition"
+                onClick={handleJoin}
+              >
+                Join
+              </button>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

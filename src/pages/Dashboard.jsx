@@ -10,15 +10,23 @@ import totalaily from "../assets/total-daily-incom.json";
 import totalIncome from "../assets/total-income.json";
 import wallet from "../assets/wallet.json";
 import cashback from "../assets/cashback.json";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getBankData, getDataofDashboard,  } from "../redux/slice/DashboardAndUser_slice";
+import Loader from "../components/Loader";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const [showCards, setShowCards] = useState(false);
-
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  // get data from redux ---------------
+  const allDashData = useSelector(
+    (state) => state.dashboard_profile?.allDashboardData?.data
+  );
+  const loading = useSelector((state) => state.dashboard_profile?.loading);
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowCards(true);
-    }, 200); // Delay for animation
+    }, 200);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -26,7 +34,7 @@ const Dashboard = () => {
     {
       id: 1,
       animation: active,
-      value: "29,34",
+      value: allDashData?.activeDdownline || 0,
       label: "Active Downline",
       borderColor: "border-green-500",
       bgColor: "bg-green-50",
@@ -34,7 +42,7 @@ const Dashboard = () => {
     {
       id: 2,
       animation: cashback,
-      value: "20,000",
+      value: allDashData?.teamIncome || 0,
       label: "Team Income",
       borderColor: "border-green-500",
       bgColor: "bg-green-50",
@@ -42,7 +50,7 @@ const Dashboard = () => {
     {
       id: 3,
       animation: totatPayout,
-      value: "10,000",
+      value: allDashData?.totalPayout || 0,
       label: "Total Payout",
       borderColor: "border-green-500",
       bgColor: "bg-green-50",
@@ -50,7 +58,7 @@ const Dashboard = () => {
     {
       id: 4,
       animation: Team,
-      value: "20,000",
+      value: allDashData?.todayTeamBusiness || 0,
       label: "Today Team Business",
       borderColor: "border-yellow-500",
       bgColor: "bg-yellow-50",
@@ -58,7 +66,7 @@ const Dashboard = () => {
     {
       id: 5,
       animation: daily,
-      value: "20,000",
+      value: allDashData?.dailyIncome || 0,
       label: "Daily Income",
       borderColor: "border-yellow-500",
       bgColor: "bg-yellow-50",
@@ -66,7 +74,7 @@ const Dashboard = () => {
     {
       id: 6,
       animation: totalaily,
-      value: "20,000",
+      value: allDashData?.totalDailyIncome || 0,
       label: "Total Daily Income",
       borderColor: "border-yellow-500",
       bgColor: "bg-yellow-50",
@@ -74,7 +82,7 @@ const Dashboard = () => {
     {
       id: 7,
       animation: totalIncome,
-      value: "22,000",
+      value: allDashData?.Total_income || 0,
       label: "Total Income",
       borderColor: "border-blue-500",
       bgColor: "bg-blue-50",
@@ -82,7 +90,7 @@ const Dashboard = () => {
     {
       id: 8,
       animation: wallet,
-      value: "15,000",
+      value: allDashData?.income_wallet || 0,
       label: "Wallet Balance",
       borderColor: "border-blue-500",
       bgColor: "bg-blue-50",
@@ -90,7 +98,7 @@ const Dashboard = () => {
     {
       id: 9,
       animation: moneygif,
-      value: "50,000",
+      value: allDashData?.cashbackIncome || 0,
       label: "Cashback Income",
       borderColor: "border-green-500",
       bgColor: "bg-pink-50",
@@ -98,15 +106,24 @@ const Dashboard = () => {
     {
       id: 10,
       animation: totatPayout,
-      value: "10,000",
+      value: allDashData?.todayPayout || 0,
       label: "Today Payout",
       borderColor: "border-pink-500",
       bgColor: "bg-green-50",
     },
   ];
 
+  // here is calling api
+  useEffect(() => {
+    dispatch(getBankData(userData?.user_id));
+  }, []);
+
+
+
   return (
     <>
+      {" "}
+      {loading && <Loader loading={loading} />}
       <SideBarHeader />
       <div className="flex-1 px-6 py-2">
         <h1 className="text-xl mb-4 font-semibold text-gray-800 text-shadow">
@@ -115,26 +132,27 @@ const Dashboard = () => {
         <hr />
 
         <div className="bg-gray-100 border border-gray-300 rounded-md shadow-md p-4 flex items-center mt-4">
-        {/* Left Section */}
-        <div className="bg-green-500 text-white font-semibold text-sm px-3 py-3 w-[10%] text-center rounded-l-md">
-        Note
-        </div>
+          {/* Left Section */}
+          <div className="bg-green-500 text-white font-semibold text-sm px-3 py-3 w-[10%] text-center rounded-l-md">
+            Note
+          </div>
 
-        {/* Marquee Section */}
-        <div className="flex-1 bg-white p-2 overflow-hidden ">
-          <marquee className="text-gray-700 font-medium">
-            This is a scrolling marquee text. Add your content here to make it
-            scroll across the screen!
-          </marquee>
+          {/* Marquee Section */}
+          <div className="flex-1 bg-white p-2 overflow-hidden ">
+            <marquee className="text-gray-700 font-medium">
+              This is a scrolling marquee text. Add your content here to make it
+              scroll across the screen!
+            </marquee>
+          </div>
         </div>
-
-      </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-6">
           {cards.map((card, index) => (
             <div
               key={card.id}
-              className={`bg-white p-[0.5rem] border-t-2 hover:shadow-xl ${card.borderColor} rounded-lg shadow-md flex items-center justify-between gap-4 transform transition-all duration-500 ease-in-out ${
+              className={`bg-white p-[0.5rem] border-t-2 hover:shadow-xl ${
+                card.borderColor
+              } rounded-lg shadow-md flex items-center justify-between gap-4 transform transition-all duration-500 ease-in-out ${
                 showCards
                   ? "opacity-100 scale-100"
                   : "opacity-0 scale-90 translate-y-5"
@@ -158,7 +176,6 @@ const Dashboard = () => {
             </div>
           ))}
         </div>
-        
       </div>
     </>
   );

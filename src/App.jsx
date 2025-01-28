@@ -17,7 +17,6 @@ import {
   useLocation,
 } from "react-router-dom";
 
-// Import pages for the Admin Panel routes
 import Dashboard from "./pages/Dashboard";
 import INV_FUND from "./pages/INV_FUND";
 import Wallet from "./pages/Wallet";
@@ -30,7 +29,9 @@ import AddCash from "./pages/AddCash";
 import TransactionHistory from "./pages/TransactionHistory";
 import TeamsTree from "./pages/TreeTeam";
 import Salary from "./components/Salary";
-
+import AdminAboutUs from "./pages/AdminAboutUs";
+import AdminTermConditions from "./pages/AdminTermConditions";
+import Admin_Privacy from "./pages/Admin_Privacy";
 
 function App() {
   return (
@@ -77,16 +78,18 @@ function AppRoutes() {
             <Route path="add-cash" element={<AddCash />} />
             <Route path="team-tree" element={<TeamsTree />} />
             <Route path="salary" element={<Salary />} />
+            <Route path="aboutus" element={<AdminAboutUs />} />
+            <Route path="privacy" element={<Admin_Privacy />} />
+            <Route path="term_conditions" element={<AdminTermConditions />} />
+
             <Route
               path="transaction-history"
               element={<TransactionHistory />}
             />
-            {/* Add other sub-routes here */}
           </Route>
         </Routes>
       </main>
 
-      {/* Only show Footer if not on an Admin or Login route */}
       {!isAdminRoute && !isLoginRoute && <Footer />}
     </>
   );

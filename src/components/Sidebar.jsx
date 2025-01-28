@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/pic2.png";
-
+import logo from "../assets/newlogo.jpg";
 import wallet from "../assets/wallet.json";
 import home from "../assets/home.json";
 import Fund from "../assets/fund.json";
@@ -28,9 +27,19 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         className={`fixed top-0 left-0 h-full bg-gray-800 text-white z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:static lg:translate-x-0 lg:w-64 w-3/4`}
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('path_to_your_background_image.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundBlendMode: "overlay", 
+        }}
       >
         <h2 className="text-3xl font-bold text-center text-blue-500 mb-5">
-          <img src={logo} alt="VS Logo" className="w-1/3 mx-auto" />
+          <img
+            src={logo}
+            alt="VS Logo"
+            className="w-60 h-20 my-1 mx-auto"
+          />
         </h2>
         <ul>
           <li className="mb-3">
@@ -128,6 +137,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         >
           ✕
         </button>
+
       </div>
     </>
   );

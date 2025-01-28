@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import SideBarHeader from "./SideBarHeader";
 import Lottie from "lottie-react";
 import daily from "../assets/dailyincome.json"
+import { getEnvFund } from "../redux/slice/EnvFund_slice";
+import { useDispatch, useSelector } from "react-redux";
 const INV_FUND = () => {
   const products = [
     {
@@ -28,9 +30,30 @@ const INV_FUND = () => {
       price: 8000,
       joinDate: "15 Jan 2025, 8:00 PM",
     },
+    {
+      name: "Product 5",
+      roi: 12.5,
+      price: 15000,
+      joinDate: "10 Jan 2025, 10:00 AM",
+    },
+    {
+      name: "Product 6",
+      roi: 8.0,
+      price: 8000,
+      joinDate: "15 Jan 2025, 8:00 PM",
+    },
   ];
-
   const [showCards, setShowCards] = useState(false);
+  const dispatch = useDispatch()
+  const userData = JSON.parse(localStorage.getItem("userData"));
+
+  // get data from redux ---------------
+  const allEnvFund = useSelector(
+    (state) => state.env_store?.allEnvFund?.data
+  );
+  const loading = useSelector((state) => state.env_store?.loading);
+
+  console.log("allEnvFund ---- " , allEnvFund)
 
   useEffect(() => {
     // Delays the animation slightly
@@ -39,6 +62,12 @@ const INV_FUND = () => {
     }, 200); // 200ms delay
     return () => clearTimeout(timeout); // Cleanup on unmount
   }, []);
+
+   // here is calling api
+    useEffect(() => {
+      dispatch(getEnvFund(userData?.user_id));
+    }, []);
+  
 
   return (
     <>
@@ -52,7 +81,7 @@ const INV_FUND = () => {
           <hr />
           <div className="grid grid-cols-1 mt-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
             {/* Static Cards with Animation */}
-            {products.map((product, index) => (
+            {allEnvFund && allEnvFund.map((product, index) => (
               <div
                 key={index}
                 className={`bg-gray-800 border-t-2 border-pink-500 text-white p-2 px-4 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out ${
@@ -62,7 +91,7 @@ const INV_FUND = () => {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }} // Stagger animation
               >
-                <h2 className="text-xl font-bold">{product.name}</h2>
+                <h2 className="text-xl font-bold">{product.product_name}</h2>
                 <p className="text-sm text-gray-300">ROI: {product.roi}%</p>
                 <div className="flex justify-between items-center"> 
                 <div className="mt-4">
@@ -70,7 +99,7 @@ const INV_FUND = () => {
                     Price: ₹{product.price}
                   </p>
                   <p className="text-sm text-gray-300">
-                    Join Date: {product.joinDate}
+                    Join Date: {product.join_date}
                   </p>
                 </div>
                 <Lottie animationData={daily} style={{ width: "50px" ,height:"50px", color:"green" }} />
