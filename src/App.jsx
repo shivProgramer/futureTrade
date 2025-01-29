@@ -16,7 +16,6 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-
 import Dashboard from "./pages/Dashboard";
 import INV_FUND from "./pages/INV_FUND";
 import Wallet from "./pages/Wallet";
@@ -32,7 +31,6 @@ import Salary from "./components/Salary";
 import AdminAboutUs from "./pages/AdminAboutUs";
 import AdminTermConditions from "./pages/AdminTermConditions";
 import Admin_Privacy from "./pages/Admin_Privacy";
-
 function App() {
   return (
     <Router>
@@ -60,7 +58,6 @@ function AppRoutes() {
           <Route path="/media" element={<Media />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/comming" element={<ComingSoon />} />
-
           {/* Admin Panel Route */}
           <Route
             path="/admin"

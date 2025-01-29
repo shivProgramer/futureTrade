@@ -11,7 +11,7 @@ import totalIncome from "../assets/total-income.json";
 import wallet from "../assets/wallet.json";
 import cashback from "../assets/cashback.json";
 import { useDispatch, useSelector } from "react-redux";
-import { getBankData, getDataofDashboard,  } from "../redux/slice/DashboardAndUser_slice";
+import {  getDataofDashboard,  } from "../redux/slice/DashboardAndUser_slice";
 import Loader from "../components/Loader";
 
 const Dashboard = () => {
@@ -115,7 +115,7 @@ const Dashboard = () => {
 
   // here is calling api
   useEffect(() => {
-    dispatch(getBankData(userData?.user_id));
+    dispatch(getDataofDashboard(userData?.user_id));
   }, []);
 
 

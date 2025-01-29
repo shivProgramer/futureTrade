@@ -1,40 +1,53 @@
 import React, { useState, useEffect } from "react";
-import SideBarHeader from "./SideBarHeader";
+import { withdrawal } from "../redux/slice/Wallet_slice";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../components/Loader";
 
 const Withdrawal = () => {
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [password, setPassword] = useState("");
-  const [showContent, setShowContent] = useState(false); // For animation
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showContent, setShowContent] = useState(false); 
+  const dispatch = useDispatch();
+  const userData = JSON.parse(localStorage.getItem("userData"));
   const predefinedAmounts = [300, 500, 1000, 2000, 5000, 10000, 49999];
 
+  const loading = useSelector((state) => state.Wallet?.loading);
+
   useEffect(() => {
-    // Introduce a delay for animation
     const timeout = setTimeout(() => {
       setShowContent(true);
     }, 200);
-    return () => clearTimeout(timeout); // Cleanup
+    return () => clearTimeout(timeout);
   }, []);
 
   const handleAmountClick = (amount) => {
     setWithdrawAmount(amount.toString());
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Withdrawal request submitted!");
-    console.log({ withdrawAmount, password });
+    try {
+      const res = await dispatch(
+        withdrawal({
+          user_id: userData?.user_id,
+          amount: withdrawAmount,
+          pass: password,
+        })
+      );
+      console.log("Response in withdrawal:", res);
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
 
   return (
     <>
-    
-      <div className=" text-black flex flex-col items-center">
+      {" "}
+      {loading && <Loader loading={loading} />}
+      <div className="text-black flex flex-col items-center">
         {/* Header */}
         <header className="w-full bg-gradient-to-r from-blue-500 to-blue-600 py-4 flex items-center justify-between px-6">
-          <button className="text-white text-lg"></button>
           <h1 className="text-xl font-semibold text-white">Withdrawal</h1>
-          <div />
         </header>
 
         {/* Balance Section */}
@@ -62,12 +75,12 @@ const Withdrawal = () => {
                 <button
                   type="button"
                   key={amount}
-                  className={`bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition focus:ring-2 focus:ring-blue-400 transform transition-all duration-500 ease-in-out ${
+                  className={`bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-gray-700  focus:ring-2 focus:ring-blue-400 transform transition-all duration-500 ease-in-out ${
                     showContent
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-5"
                   }`}
-                  style={{ transitionDelay: `${index * 100}ms` }} // Stagger animation
+                  style={{ transitionDelay: `${index * 100}ms` }}
                   onClick={() => handleAmountClick(amount)}
                 >
                   ₹ {amount}
@@ -101,7 +114,7 @@ const Withdrawal = () => {
                   Enter Password
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -111,8 +124,9 @@ const Withdrawal = () => {
                 <button
                   type="button"
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"
+                  onClick={() => setShowPassword(!showPassword)}
                 >
-                  👁️
+                  {showPassword ? "👁️" : "🔒"}
                 </button>
               </div>
             </div>

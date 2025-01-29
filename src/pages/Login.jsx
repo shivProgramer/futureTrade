@@ -187,6 +187,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 import { useDispatch } from "react-redux";
 import { loginApi } from "../redux/slice/Auth_slice";
 import video from "../../src/assets/loginvideo.mp4";
+import { showToast } from "../utils/Config";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -252,33 +253,26 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
-    // Validate the form
+
     if (!validateForm()) return;
-  
     try {
       const res = await dispatch(
         loginApi({
           newData: formData,
           navigate,
         })
-      ).unwrap(); // Unwrap the response to directly access the result or error
-  
-      // Handle successful login
+      ).unwrap();
       console.log("res in client side", res);
-  
+
       if (res) {
-        // Login successful, trigger video playback
         setShowVideo(true);
       }
     } catch (err) {
-      // Handle error if login failed
       console.error("Login failed:", err);
       setError(err?.error || "Login failed. Please try again.");
     }
   };
-  
-  
+
   const handleVideoEnd = () => {
     setShowVideo(false);
 
@@ -365,7 +359,7 @@ const Login = () => {
                     />
                   </div>
                 </Fade>
-             
+
                 <Fade direction="up" delay={300}>
                   <button
                     type="submit"

@@ -1,4 +1,3 @@
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../components/axiosInstance";
 
@@ -6,8 +5,8 @@ const initialState = {
   allDashboardData: [],
   allJoinPacakge: [],
   profileData: [],
-  bankData : [],
-  SupportAb_us_Term_Status : [],
+  bankData: [],
+  SupportAb_us_Term_Status: [],
   loading: false,
   error: null,
   access: [],
@@ -38,18 +37,18 @@ export const getProfileData = createAsyncThunk(
   }
 );
 
-export const getSupportAbout_usPrivacyTermStatusDatetimeProfileData = createAsyncThunk(
-  "getSupportAbout_usPrivacyTermStatusDatetimeProfileData",
-  async (id, thunkAPI) => {
-    try {
-      const response = await axiosInstance.get(`term`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue({ error: error.message });
+export const getSupportAbout_usPrivacyTermStatusDatetimeProfileData =
+  createAsyncThunk(
+    "getSupportAbout_usPrivacyTermStatusDatetimeProfileData",
+    async (id, thunkAPI) => {
+      try {
+        const response = await axiosInstance.get(`term`);
+        return response.data;
+      } catch (error) {
+        return thunkAPI.rejectWithValue({ error: error.message });
+      }
     }
-  }
-);
-
+  );
 
 export const getjoinPackage = createAsyncThunk(
   "getjoinPackage",
@@ -87,7 +86,7 @@ export const updateProfile = createAsyncThunk(
   }
 );
 
-// bank details 
+// bank details
 export const getBankData = createAsyncThunk(
   "getBankData",
   async (id, thunkAPI) => {
@@ -112,7 +111,7 @@ export const BankCrteateBank = createAsyncThunk(
   }
 );
 
-// join prodect 
+// join prodect
 export const CreateJoinProdect = createAsyncThunk(
   "CreateJoinProdect",
   async (newData, thunkAPI) => {
@@ -163,7 +162,7 @@ const DashboardAndUser_slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      
+
       .addCase(getProfileData.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -177,6 +176,22 @@ const DashboardAndUser_slice = createSlice({
         state.error = action.payload;
       })
 
+      // --
+
+      .addCase(updateProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.profileData = action.payload;
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+
       .addCase(CreateJoinProdect.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -188,14 +203,28 @@ const DashboardAndUser_slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(getSupportAbout_usPrivacyTermStatusDatetimeProfileData.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getSupportAbout_usPrivacyTermStatusDatetimeProfileData.fulfilled, (state, action) => {
-        state.loading = false;
-        state.SupportAb_us_Term_Status = action.payload;
-      })
+      .addCase(
+        getSupportAbout_usPrivacyTermStatusDatetimeProfileData.pending,
+        (state) => {
+          state.loading = true;
+          state.error = null;
+        }
+      )
+      .addCase(
+        getSupportAbout_usPrivacyTermStatusDatetimeProfileData.fulfilled,
+        (state, action) => {
+          state.loading = false;
+          state.SupportAb_us_Term_Status = action.payload;
+        }
+      )
+      .addCase(
+        getSupportAbout_usPrivacyTermStatusDatetimeProfileData.rejected,
+        (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+        }
+      )
+
       .addCase(getBankData.pending, (state, action) => {
         state.loading = false;
         state.error = action.payload;
@@ -224,7 +253,6 @@ const DashboardAndUser_slice = createSlice({
       .addCase("reset", () => initialState);
   },
 });
-
 
 export default DashboardAndUser_slice.reducer;
 export const { searchClient, acessModle } = DashboardAndUser_slice.actions;

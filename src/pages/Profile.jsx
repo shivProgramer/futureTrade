@@ -25,6 +25,7 @@ const Profile = () => {
     return () => clearTimeout(timeout);
   }, []);
 
+
   const handleImageUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
@@ -65,6 +66,7 @@ const Profile = () => {
     (state) => state.dashboard_profile?.profileData?.data
   );
   const loading = useSelector((state) => state.dashboard_profile?.loading);
+  
   const phone = useSelector(
     (state) => state.dashboard_profile?.SupportAb_us_Term_Status?.data
   );
