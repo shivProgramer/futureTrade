@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 export const API_URL = "https://root2.futureservices.services/";
 export const API_URL_Img = "https://root2.futureservices.services/uploads/";
-
+export const onlinUrl = "https://react.futureservices.services/"
 // export const Img_Url = "http://localhost:30011/public";
 export const showToast = (message, type = "default") => {
  

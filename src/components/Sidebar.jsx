@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/newlogo.jpg";
+import logo from "../assets/whitelogo.png";
 import wallet from "../assets/wallet.json";
 import home from "../assets/home.json";
 import Fund from "../assets/fund.json";
@@ -34,14 +34,14 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           backgroundBlendMode: "overlay", 
         }}
       >
-        <h2 className="text-3xl font-bold text-center text-blue-500 mb-5">
+        <h2 className="text-3xl my-3 font-bold text-center text-blue-500 mb-5">
           <img
             src={logo}
             alt="VS Logo"
-            className="w-60 h-20 my-1 mx-auto"
+            className="w-40 h-24 my-1 mx-auto"
           />
         </h2>
-        <ul>
+        <ul className="mt-10">
           <li className="mb-3">
             <Link
               to="/admin/dashboard"

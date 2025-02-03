@@ -72,7 +72,6 @@ const INV_FUND = () => {
   return (
     <>
       <SideBarHeader />
-
       <div className="">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl text-start text-black font-bold mb-2">
@@ -84,7 +83,7 @@ const INV_FUND = () => {
             {allEnvFund && allEnvFund.map((product, index) => (
               <div
                 key={index}
-                className={`bg-gray-800 border-t-2 border-pink-500 text-white p-2 px-4 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out ${
+                className={`bg-gray-800 border-t-2 border-green-500 text-white p-2 px-4 rounded-lg shadow-lg transform transition-all duration-500 ease-in-out ${
                   showCards
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-90 translate-y-5"

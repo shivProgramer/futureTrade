@@ -9,90 +9,72 @@ const SideBarHeader = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userData = JSON.parse(localStorage.getItem("userData"));
+  const navigate = useNavigate();
 
-  const nevigate = useNavigate();
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
-  const closeDropdown = () => {
-    setDropdownOpen(false);
-  };
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  // Close dropdown when clicking outside
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const closeDropdown = () => setDropdownOpen(false);
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+  
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!event.target.closest(".dropdown-container")) {
         closeDropdown();
       }
     };
-
     document.addEventListener("click", handleOutsideClick);
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
+    return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
 
   const handleLogout = () => {
     localStorage.clear();
     showToast("Logout successful.", "success");
-    nevigate("/admin/dashboard");
+    navigate("/admin/dashboard");
   };
+
   return (
-    <header className="bg-white text-black p-3 mb-4 flex items-center justify-between customshadiw rounded-md">
-      {/* Left Section */}
-      <div className="text-lg font-semibold">
-        <img src={logo} alt="VS Logo" className="w-14 mx-auto " />
+    <header className="bg-white text-black p-3 mb-4 flex items-center justify-between shadow-md rounded-md w-full">
+      {/* Logo Section */}
+      <div className="flex items-center space-x-2">
+        <img src={logo} alt="VS Logo" className="w-12 h-12 object-contain" />
+        <h1 className="text-lg font-bold hidden sm:block">Dashboard</h1>
       </div>
-
+      
       {/* Right Section */}
-      <div className="relative dropdown-container">
-        <div className="flex items-center gap-4 ">
-          {/* Profile Dropdown Trigger */}
-          <div className="  flex items-center justify-center  ">
-            <button
-              className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-md hover:bg-gray-900 focus:outline-none text-white "
-              onClick={handleOpenModal}
-            >
-              Join Product
-            </button>
-            <Join_Model isOpen={isModalOpen} onClose={handleCloseModal} />
-          </div>
-
-          <button
-            className="flex items-center gap-2 px-2 py-1 bg-gray-800 rounded-md hover:bg-gray-600 focus:outline-none text-green-400"
-            onClick={toggleDropdown}
-          >
-            <p className="uppercase text-white text-sm font-semibold"> {userData?.name} </p>
-            <FaUserCircle className="text-3xl text-white" />
-            <FaChevronDown />
-          </button>
-        </div>
-        {/* Dropdown Box */}
+      <div className="flex items-center space-x-4 dropdown-container">
+        {/* Join Product Button */}
+        <button
+          className="px-3 py-2 text-sm sm:text-base bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+          onClick={handleOpenModal}
+        >
+          Join Product
+        </button>
+        <Join_Model isOpen={isModalOpen} onClose={handleCloseModal} />
+        
+        {/* Profile Dropdown */}
+        <button
+          className="flex items-center space-x-2 px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition"
+          onClick={toggleDropdown}
+        >
+          <p className="hidden sm:block uppercase text-sm font-semibold">
+            {userData?.name || "User"}
+          </p>
+          <FaUserCircle className="text-2xl" />
+          <FaChevronDown className="hidden sm:inline" />
+        </button>
+        
+        {/* Dropdown Menu */}
         {dropdownOpen && (
-          <div className="absolute right-0 z-50 mt-2 w-48 bg-white text-gray-700 shadow-lg rounded-md">
+          <div className="absolute right-4 top-14 w-48 bg-white text-gray-700 shadow-lg rounded-md overflow-hidden z-50">
             <ul>
-              <NavLink to={"/admin/profile"}>
-                <li className="px-4 py-2 border-l-2  hover:border-green-500 hover:bg-gray-100 cursor-pointer">
-                  Profile
-                </li>
+              <NavLink to="/admin/profile">
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2 hover:border-green-500">Profile</li>
               </NavLink>
-              <NavLink to={"/admin/dashboard"}>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2  hover:border-green-500">
-                  Change Password
-                </li>
+              <NavLink to="/admin/change-password">
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2 hover:border-green-500">Change Password</li>
               </NavLink>
-
               <li
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2  hover:border-green-500"
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2 hover:border-red-500"
                 onClick={handleLogout}
               >
                 Logout

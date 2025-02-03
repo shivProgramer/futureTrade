@@ -14,6 +14,7 @@ const Withdrawal = () => {
 
   const loading = useSelector((state) => state.Wallet?.loading);
 
+  const balance = JSON.parse(localStorage.getItem("amount"))
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowContent(true);
@@ -57,7 +58,7 @@ const Withdrawal = () => {
           }`}
         >
           <h2 className="text-lg font-semibold">
-            BALANCE: <span className="text-blue-400">0.00</span>
+            BALANCE: <span className="text-blue-400">{balance}.00 </span>
             <span className="ml-2 px-2 py-1 text-sm rounded-full">ALL</span>
           </h2>
         </section>

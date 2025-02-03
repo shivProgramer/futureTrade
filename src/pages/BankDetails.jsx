@@ -4,15 +4,18 @@ import daily from "../assets/dailyincome.json";
 import SideBarHeader from "./SideBarHeader";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
-import { BankCrteateBank, getBankData } from "../redux/slice/DashboardAndUser_slice";
+import {
+  BankCrteateBank,
+  getBankData,
+} from "../redux/slice/DashboardAndUser_slice";
 import { showToast } from "../utils/Config";
 
 const BankDetails = () => {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [showFields, setShowFields] = useState(false);
+  const [enableInput, setEnableInput] = useState(true);
   const userData = JSON.parse(localStorage.getItem("userData"));
-
   const [formData, setFormData] = useState({
     user_id: userData?.user_id || "",
     account_holder: "",
@@ -27,7 +30,10 @@ const BankDetails = () => {
   );
   const loading = useSelector((state) => state.dashboard_profile?.loading);
 
-
+  const ActiveInput = (e) => {
+    e.preventDefault();
+    setEnableInput(!enableInput);
+  };
 
   // Handle form field changes
   const handleInputChange = (e) => {
@@ -49,8 +55,6 @@ const BankDetails = () => {
       ifsc_code: bankDetails?.ifsc_code || "",
     }));
   }, [bankDetails]);
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,7 +112,7 @@ const BankDetails = () => {
             />
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="space-y-6">
               {[
                 {
@@ -155,18 +159,26 @@ const BankDetails = () => {
                     placeholder={field.placeholder}
                     value={formData[field.name]}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+                    readOnly={enableInput} // Set to true if input is read-only
+                    className={`w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 ${
+                      enableInput
+                        ? "bg-gray-200 text-black cursor-not-allowed"
+                        : "bg-white text-black"
+                    }`}
                   />
                 </div>
               ))}
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 flex justify-between items-center gap-4">
+              <button className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-blue-600 transition" onClick={ActiveInput}>
+                {enableInput? "Enable Input" : "Disable Input"}
+              </button>
               <button
-                type="submit"
+                onClick={handleSubmit}
                 className="w-full bg-green-500 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-green-600 transition"
               >
-                Update Details
+               {bankDetails ? "Update Details" : "Create"} 
               </button>
             </div>
           </form>

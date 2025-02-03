@@ -26,11 +26,12 @@ import KYC_Verification from "./pages/KYC_Verification";
 import Withdrawal from "./pages/Withdrawal";
 import AddCash from "./pages/AddCash";
 import TransactionHistory from "./pages/TransactionHistory";
-import TeamsTree from "./pages/TreeTeam";
+// import TeamsTree from "./pages/TreeTeam";
 import Salary from "./components/Salary";
 import AdminAboutUs from "./pages/AdminAboutUs";
 import AdminTermConditions from "./pages/AdminTermConditions";
 import Admin_Privacy from "./pages/Admin_Privacy";
+import TreeNode from "./pages/TreeTeam";
 function App() {
   return (
     <Router>
@@ -73,7 +74,7 @@ function AppRoutes() {
             <Route path="kyc" element={<KYC_Verification />} />
             <Route path="withdrawal" element={<Withdrawal />} />
             <Route path="add-cash" element={<AddCash />} />
-            <Route path="team-tree" element={<TeamsTree />} />
+            <Route path="team-tree" element={<TreeNode />} />
             <Route path="salary" element={<Salary />} />
             <Route path="aboutus" element={<AdminAboutUs />} />
             <Route path="privacy" element={<Admin_Privacy />} />

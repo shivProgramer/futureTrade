@@ -19,14 +19,17 @@ const Wallet = () => {
     }, 200);
     return () => clearTimeout(timeout);
   }, []);
-    // Fetch data from Redux
-  const allProfileData = useSelector((state) => state.dashboard_profile?.profileData?.data);
+  // Fetch data from Redux
+  const allProfileData = useSelector(
+    (state) => state.dashboard_profile?.profileData?.data
+  );
   const loading = useSelector((state) => state.dashboard_profile?.loading);
 
-
-  const handleWithdrawal = () => {
+  const handleWithdrawal = (item) => {
+    localStorage.setItem("amount", item);
     nevigate("/admin/withdrawal");
   };
+
   const handleAddCash = () => {
     nevigate("/admin/add-cash");
   };
@@ -35,7 +38,7 @@ const Wallet = () => {
   };
   // Fetch profile data on component mount
   useEffect(() => {
-      dispatch(getProfileData(userData?.user_id));
+    dispatch(getProfileData(userData?.user_id));
   }, [dispatch, userData?.user_id]);
 
   const data = [
@@ -48,16 +51,16 @@ const Wallet = () => {
 
   return (
     <>
-      {loading && <Loader loading={loading} />}
-      {" "}
-      <SideBarHeader />
+      {loading && <Loader loading={loading} />} <SideBarHeader />
       <div className="p-4 text-black">
         {/* Total Balance */}
         <div className="bg-white border-t-2 border-gray-700 text-gray-600 p-5 rounded-lg shadow-lg mb-4">
           <div className="flex justify-between items-center">
             <div>
               <h2 className="text-lg font-semibold">Total Balance</h2>
-              <p className="text-2xl font-bold text-green-600">{allProfileData?.wallet}</p>
+              <p className="text-2xl font-bold text-green-600">
+                {allProfileData?.wallet}
+              </p>
             </div>
           </div>
         </div>
@@ -67,7 +70,7 @@ const Wallet = () => {
           {data.map((item, index) => (
             <div
               key={index}
-              className={`bg-gray-800 text-white border-t-2 border-pink-400 px-4 py-2 rounded-lg shadow-lg flex justify-between items-center transform transition-all duration-500 ease-in-out ${
+              className={`bg-gray-800 text-white border-t-2 border-green-400 px-4 py-2 rounded-lg shadow-lg flex justify-between items-center transform transition-all duration-500 ease-in-out ${
                 showCards
                   ? "opacity-100 scale-100"
                   : "opacity-0 scale-90 translate-y-5"
@@ -95,7 +98,7 @@ const Wallet = () => {
                 ) : (
                   <button
                     className="bg-green-600 hover:bg-gray-800 text-white py-2 px-4 mt-4 rounded-md font-medium shadow-md"
-                    onClick={handleWithdrawal}
+                    onClick={() => handleWithdrawal(item.amount)}
                   >
                     Withdraw
                   </button>
@@ -106,14 +109,14 @@ const Wallet = () => {
         </div>
 
         {/* Transaction History */}
-        <div className="bg-white border-t-2 border-gray-700 text-black mt-8 p-4 rounded-lg shadow-lg flex justify-between items-center">
-          <div>
+        <div className="bg-white border-t-2 border-gray-700 text-black mt-8 p-4 rounded-lg shadow-lg flex justify-between items-center"  onClick={handleTransaction}>
+          <div className="py-4">
             <h3 className="text-lg font-semibold">Transaction History</h3>
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <p className="text-gray-500">No transactions yet</p>
-            </div>
+            </div> */}
           </div>
-          <div onClick={handleTransaction} className="cursor-pointer">
+          <div className="cursor-pointer">
             <IoIosArrowForward className="text-green-600" size={24} />
           </div>
         </div>

@@ -85,7 +85,7 @@ const TransactionHistory = () => {
               <div className="flex items-center space-x-4">
                 {/* Icon */}
                 <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
-                  {transaction.type}
+                  {transaction.type === "1" ? "CR" : "DR"}
                 </div>
 
                 {/* Transaction Details */}
@@ -103,8 +103,8 @@ const TransactionHistory = () => {
                 <p
                   className={`text-xs ${
                     transaction.status_label === "Pending"
-                      ? "text-yellow-400"
-                      : "text-green-400"
+                      ? "text-yellow-400":transaction.status_label === "Failed"
+                      ? "text-red-400" : "text-green-400"
                   }`}
                 >
                   {transaction.status_label}

@@ -3,6 +3,10 @@ import axiosInstance from "../../components/axiosInstance";
 
 const initialState = {
   allDashboardData: [],
+  treeteamdata: [],
+  marqueData: [],
+  popupSliderdata:[],
+  popopSlideData : [] , 
   allJoinPacakge: [],
   profileData: [],
   bankData: [],
@@ -125,6 +129,42 @@ export const CreateJoinProdect = createAsyncThunk(
   }
 );
 
+// get tree team data
+export const GetTreeteam = createAsyncThunk(
+  "GetTreeteam",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(`getUserTreeApi?user_id=${id}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  }
+);
+
+// marque
+
+export const getMarque = createAsyncThunk("getMarque", async (id, thunkAPI) => {
+  try {
+    const response = await axiosInstance.get(`note`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue({ error: error.message });
+  }
+});
+
+// popup Slider 
+
+export const popupSlider = createAsyncThunk("popupSlider", async (id, thunkAPI) => {
+  try {
+    const response = await axiosInstance.get(`slider`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue({ error: error.message });
+  }
+});
+
+
 const DashboardAndUser_slice = createSlice({
   name: "DashboardAndUser_slice",
   initialState,
@@ -136,8 +176,48 @@ const DashboardAndUser_slice = createSlice({
       state.access = action.payload;
     },
   },
+
   extraReducers: (builder) => {
     builder
+      .addCase(getMarque.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getMarque.fulfilled, (state, action) => {
+        state.loading = false;
+        state.marqueData = action.payload;
+      })
+      .addCase(getMarque.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(popupSlider.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(popupSlider.fulfilled, (state, action) => {
+        state.loading = false;
+        state.popupSliderdata = action.payload;
+      })
+      .addCase(popupSlider.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+
+      .addCase(GetTreeteam.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(GetTreeteam.fulfilled, (state, action) => {
+        state.loading = false;
+        state.treeteamdata = action.payload;
+      })
+      .addCase(GetTreeteam.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(getDataofDashboard.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -190,7 +270,6 @@ const DashboardAndUser_slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-
 
       .addCase(CreateJoinProdect.pending, (state) => {
         state.loading = true;

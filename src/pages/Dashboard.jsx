@@ -11,8 +11,9 @@ import totalIncome from "../assets/total-income.json";
 import wallet from "../assets/wallet.json";
 import cashback from "../assets/cashback.json";
 import { useDispatch, useSelector } from "react-redux";
-import {  getDataofDashboard,  } from "../redux/slice/DashboardAndUser_slice";
+import {  getDataofDashboard, getMarque, popupSlider,  } from "../redux/slice/DashboardAndUser_slice";
 import Loader from "../components/Loader";
+import ModalPopupDashboard from "../components/ModalPopupDashboard";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,11 @@ const Dashboard = () => {
   const allDashData = useSelector(
     (state) => state.dashboard_profile?.allDashboardData?.data
   );
+  const MarqueeData = useSelector(
+    (state) => state.dashboard_profile?.marqueData?.data
+  );
+
+
   const loading = useSelector((state) => state.dashboard_profile?.loading);
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -29,6 +35,8 @@ const Dashboard = () => {
     }, 200);
     return () => clearTimeout(timeout);
   }, []);
+    const isopen = JSON.parse(localStorage.getItem("model"))
+    console.log("isopen" , isopen)
 
   const cards = [
     {
@@ -100,17 +108,10 @@ const Dashboard = () => {
       animation: moneygif,
       value: allDashData?.cashbackIncome || 0,
       label: "Cashback Income",
-      borderColor: "border-green-500",
+      borderColor: "border-blue-500",
       bgColor: "bg-pink-50",
     },
-    {
-      id: 10,
-      animation: totatPayout,
-      value: allDashData?.todayPayout || 0,
-      label: "Today Payout",
-      borderColor: "border-pink-500",
-      bgColor: "bg-green-50",
-    },
+    
   ];
 
   // here is calling api
@@ -118,12 +119,20 @@ const Dashboard = () => {
     dispatch(getDataofDashboard(userData?.user_id));
   }, []);
 
+  useEffect(() => {
+    dispatch(getMarque("note"));
+  }, []);
 
+ 
 
   return (
     <>
       {" "}
       {loading && <Loader loading={loading} />}
+      <div className="flex items-center justify-center">
+      <ModalPopupDashboard  open={isopen} />
+
+    </div>
       <SideBarHeader />
       <div className="flex-1 px-6 py-2">
         <h1 className="text-xl mb-4 font-semibold text-gray-800 text-shadow">
@@ -140,8 +149,7 @@ const Dashboard = () => {
           {/* Marquee Section */}
           <div className="flex-1 bg-white p-2 overflow-hidden ">
             <marquee className="text-gray-700 font-medium">
-              This is a scrolling marquee text. Add your content here to make it
-              scroll across the screen!
+              {MarqueeData?.homeNote}
             </marquee>
           </div>
         </div>
@@ -177,6 +185,8 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
+
+     
     </>
   );
 };

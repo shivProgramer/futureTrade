@@ -162,23 +162,18 @@ const Home = () => {
       {/* ------ */}
       <section className="choose-area pt-10">
         <div className="container mx-auto px-4">
-          <div
-            className="section-title wow animate__animated animate__bounceInLeft mb-10 "
-            data-wow-delay="0.2s"
-          >
-            <h3 className="mb-10 ">
-              <span className="block text-4xl font-[400] text-[#DEB271] text-shadow ">
+          <div className="section-title wow animate__animated animate__bounceInLeft mb-10">
+            <h3 className="mb-10">
+              <span className="block text-4xl font-[400] text-[#DEB271] text-shadow">
                 WHY CHOOSE US
               </span>
               <span className="text-[#DEB271] text-4xl font-[300]">
-                Innovative and sustainable projects <br /> enhance lifestyles{" "}
+                Innovative and sustainable projects <br /> enhance lifestyles
               </span>
             </h3>
             <p className="my-2 text-center text-gray-500 text-base px-4 md:px-20">
               Collective Purchase: Pool resources with a community of investors
-              to jointly acquire real estate. Whether it's a property still
-              under construction or an already-established profitable asset, VS
-              TechInfra Promoters Pvt. Ltd. offers diverse opportunities.
+              to jointly acquire real estate.
             </p>
             <p className="my-2 text-center text-gray-500 text-base px-4 md:px-20">
               Dual Strategies: We focus on two main approaches: investing in
@@ -186,66 +181,60 @@ const Home = () => {
               selling, and purchasing profitable assets designed for leasing.
             </p>
           </div>
-          <div className="row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-            <div
-              className="choose-item shadow-2xl p-5 wow animate__animated animate__zoomIn border-b-2 border-[#DEB271]"
-              data-wow-delay="0.4s"
-            >
-              <i className="flaticon-location text-4xl mb-4 text-[#DEB271]"></i>
-              <h3 className="font-medium text-xl text-[#165b80]">
-                Initial consultation
-              </h3>
-              <p className="text-base font-normal py-2 text-gray-500">
-                Our initial consultation involves conducting meetings with
-                expert real estate agents who listen and discuss your real
-                estate preferences and budget.
-              </p>
-            </div>
-            <div
-              className="choose-item shadow-2xl p-5 wow animate__animated animate__zoomIn border-b-2 border-[#DEB271]"
-              data-wow-delay="0.4s"
-            >
-              <i className="flaticon-key text-4xl mb-4 text-[#DEB271]"></i>
-              <h3 className="font-medium text-xl  text-[#165b80]">
-                Property Search
-              </h3>
-              <p className="text-base font-normal py-2 text-gray-500">
-                We showcase exclusive properties that match your criteria and
-                even schedule home visits with complete guidance under our
-                agent.
-              </p>
-            </div>
-            <div
-              className="choose-item shadow-2xl p-5 wow animate__animated animate__zoomIn border-b-2 border-[#DEB271]"
-              data-wow-delay="0.4s"
-            >
-              <i className="flaticon-key text-4xl mb-4 text-[#DEB271]"></i>
-              <h3 className="font-medium text-xl  text-[#165b80]">
-                Property inspection
-              </h3>
-              <p className="text-base font-normal py-2 text-gray-500">
-                We help you visit the property and hire home inspectors to
-                assess the property’s condition. Further, we help negotiate
-                offers and finalize purchases.
-              </p>
-            </div>
-            <div
-              className="choose-item shadow-2xl p-5 wow animate__animated animate__zoomIn border-b-2 border-[#DEB271]"
-              data-wow-delay="0.4s"
-            >
-              <i className="flaticon-sale text-4xl mb-4 text-[#DEB271]"></i>
-              <h3 className="font-medium text-xl  text-[#165b80]">
-                Personalized services
-              </h3>
-              <p className="text-base font-normal py-2 text-gray-500">
-                Our dedicated team is ready to assist in providing personalized
-                attention throughout the home-buying journey ensuring a
-                hassle-free experience.
-              </p>
-            </div>
+
+          {/* 🚀 FIXED GRID LAYOUT */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 px-4 overflow-hidden">
+            {[
+              {
+                icon: "flaticon-location",
+                title: "Initial Consultation",
+                description:
+                  "Our initial consultation involves conducting meetings with expert real estate agents.",
+              },
+              {
+                icon: "flaticon-key",
+                title: "Property Search",
+                description:
+                  "We showcase exclusive properties and schedule home visits with expert guidance.",
+              },
+              {
+                icon: "flaticon-key",
+                title: "Property Inspection",
+                description:
+                  "We help you inspect properties and negotiate purchases effectively.",
+              },
+              {
+                icon: "flaticon-sale",
+                title: "Personalized Services",
+                description:
+                  "Our dedicated team ensures a hassle-free home-buying journey.",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="choose-item shadow-2xl p-5 border-b-2 border-[#DEB271] 
+            transition-all duration-300 hover:scale-105 hover:shadow-lg 
+            active:scale-105 focus-within:scale-105"
+                style={{
+                  minHeight: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  overflow: "hidden", // 🚀 Prevents unwanted scrollbars
+                }}
+              >
+                <i className={`${item.icon} text-4xl mb-4 text-[#DEB271]`}></i>
+                <h3 className="font-medium text-xl text-[#165b80]">
+                  {item.title}
+                </h3>
+                <p className="text-base font-normal py-2 text-gray-500">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
       {/* ---- */}
 
       <section className="facilities-area pt-24 pb-16 ">
@@ -337,7 +326,9 @@ const Home = () => {
             <div className="row grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               {/* Left Content */}
               <div className="w-full">
-                <h2 className="text-4xl font-medium text-[#DEB271] text-shadow">Newsletter</h2>
+                <h2 className="text-4xl font-medium text-[#DEB271] text-shadow">
+                  Newsletter
+                </h2>
                 <p className="mt-4 text-gray-500">
                   Sign up for our latest news and articles. We won’t give you
                   spam emails.
@@ -362,7 +353,7 @@ const Home = () => {
                       type="submit"
                       className="btn btn-dark bg-[#DEB271] text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition"
                     >
-                      <MdOutlineEmail size={35}/>
+                      <MdOutlineEmail size={35} />
                     </button>
                   </form>
                 </div>

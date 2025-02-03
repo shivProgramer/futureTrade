@@ -1,34 +1,9 @@
-
-
-// import React from 'react'
-// import Sidebar from '../components/Sidebar'
-// import { Outlet } from 'react-router-dom'
-
-// const AdminPanel = () => {
-//   return (
-//     <div className="flex h-screen flex-col lg:flex-row">
-  
-//       <Sidebar />
-
-//       <div className="flex-1 p-6 overflow-auto">
-        
-//         <Outlet />
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default AdminPanel
-
-
-
-
 import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
-
+import { TbBaselineDensityMedium } from "react-icons/tb";
 const AdminPanel = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to control sidebar visibility
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
   // Toggle the sidebar
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -45,7 +20,7 @@ const AdminPanel = () => {
             onClick={toggleSidebar}
             className="text-white bg-gray-800 p-2 rounded-md"
           >
-            <span className="material-icons">menu</span> {/* You can use any icon library */}
+            <span className="material-icons"> <TbBaselineDensityMedium/> </span> 
           </button>
         </div>
 
