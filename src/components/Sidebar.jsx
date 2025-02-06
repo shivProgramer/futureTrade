@@ -1,15 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/whitelogo.png";
 import wallet from "../assets/wallet.json";
 import home from "../assets/home.json";
 import Fund from "../assets/fund.json";
 import permotion from "../assets/promotion.json";
-import kyc from "../assets/active.json";
+import kyc from "../assets/kyc.json";
 // import home from "../assets/";
 import Lottie from "lottie-react";
+import { useDispatch, useSelector } from "react-redux";
+import { getKyc } from "../redux/slice/KyC_slice";
 // import wallet from "../assets/wallet.json";
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  const dispatch = useDispatch();
+  const userData = JSON.parse(localStorage.getItem("userData"));
+   // get data from redux
+   const allkycdata = useSelector((state) => state.kyc?.keydata?.data);
+  const loading = useSelector((state) => state.kyc?.loading);
+  const [animation, setAnimation] = useState(kyc);
+
+  useEffect(() => {
+    if (!allkycdata) return; // Ensure data exists before proceeding
+
+    const status = allkycdata?.status;
+
+    if (status === 1) {
+      setAnimation(kyc); // Keep default animation (no color change)
+      return;
+    }
+
+    // Define color mapping based on status
+    const colorMap = {
+      0: [1, 1, 0, 1], // Yellow for pending (status 0)
+      2: [1, 0, 0, 1], // Red for failed (status 2)
+    };
+
+    if (!colorMap[status]) return; // If status is not in colorMap, do nothing
+
+    // Deep copy animation data
+    let updatedAnimation = JSON.parse(JSON.stringify(kyc));
+
+    // Apply color changes where needed
+    updatedAnimation.layers.forEach((layer) => {
+      if (layer.shapes) {
+        layer.shapes.forEach((shape) => {
+          if (shape.it) {
+            shape.it.forEach((item) => {
+              if (item.c && colorMap[status]) {
+                item.c.k = colorMap[status]; // Apply color change
+              }
+            });
+          }
+        });
+      }
+    });
+
+    setAnimation(updatedAnimation);
+  }, [allkycdata]); 
+
+    useEffect(() => {
+      dispatch(getKyc(userData?.user_id));
+    }, []);
+  
+
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
   return (
@@ -121,10 +174,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               }`}
               onClick={toggleSidebar}
             >
-              <Lottie
-                animationData={kyc}
-                style={{ width: "30px", height: "30px" }}
-              />{" "}
+              <Lottie animationData={animation} style={{ width: "30px", height: "30px" }} />
               KYC
             </Link>
           </li>

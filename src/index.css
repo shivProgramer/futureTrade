@@ -79,7 +79,7 @@ html, body {
   gap: 20px; /* Adjust spacing between nodes */
 }
 .org-chart .oc-edge {
-  border-color: #d1d5db; /* Change line color */
+  border-color: #d1d5db; 
 }
 
 
@@ -88,117 +88,192 @@ body {
 }
 
 /* It's supposed to look like a tree diagram*****************************************************/
-.tree, .tree ul, .tree li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
+/* .tree, .tree ul, .tree li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
 }
 
 .tree {
-    margin: 0 0 1em;
-    text-align: center;
+  margin: 0 0 1em;
+  text-align: center;
 }
-.tree, .tree ul {
-    display: table;
-}
+
 .tree ul {
+  display: table;
   width: 100%;
 }
 
 .tree li {
-    display: table-cell;
-    padding: .5em 0;
-    vertical-align: top;
-}
-
-.tree li:before {
-    outline: solid 1px #666;
-    content: "";
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-.tree li:first-child:before {left: 50%;}
-.tree li:last-child:before {right: 50%;}
-
-.tree code, .tree span {
-    border: solid .1em #666;
-    border-radius: .2em;
-    display: inline-block;
-    margin: 0 .2em .5em;
-    padding: .2em .5em;
-    position: relative;
-}
-
-.tree code {
-    font-family: monaco, Consolas, 'Lucida Console', monospace;
-}
-
-.tree ul:before,
-.tree code:before,
-.tree span:before {
-    outline: solid 1px #666;
-    content: "";
-    height: .5em;
-    left: 50%;
-    position: absolute;
-}
-
-.tree ul:before {
-    top: -.5em;
-}
-.tree code:before,
-.tree span:before {
-    top: -.55em;
-}
-
-
-.tree > li {margin-top: 0;}
-.tree > li:before,
-.tree > li:after,
-.tree > li > code:before,
-.tree > li > span:before {
-  outline: none;
-}
-
-
-.tree li:hover > ul > li > span {
-  transition: background-color 0.3s ease;
-}
-
-
-
-.tree li span {
+  display: table-cell;
+  padding: .5em 0;
+  vertical-align: top;
   position: relative;
-  cursor: pointer;
 }
 
-/* Tooltip Styling */
-.tree li span:hover .tooltip-box {
-  display: block;
-}
-
-.tooltip-box {
-  display: none;
+.tree li:before, .tree li:after {
+  content: '';
   position: absolute;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-  color: #333;
-  padding: 8px 12px;
-  border: 1px solid #666;
-  border-radius: 5px;
-  white-space: nowrap;
-  z-index: 10;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  font-size: 14px;
-  line-height: 1.5;
-  text-align: left;
-  min-width: 180px;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: 1em;
+  border-top: 1px solid #666;
 }
 
+.tree li:after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #666;
+}
 
-/* ------------------  */
+.tree li:only-child:before, .tree li:only-child:after {
+  display: none;
+}
+
+.tree li:only-child {
+  padding-top: 0;
+}
+
+.tree li:first-child:before, .tree li:last-child:after {
+  border: 0 none;
+}
+
+.tree li:last-child:before {
+  border-right: 1px solid #666;
+  border-radius: 0 0 0 0;
+}
+
+.tree li:first-child:after {
+  border-radius: 0 0 0 0;
+}
+
+.tree ul ul:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  border-left: 1px solid #666;
+}
+
+.tree li a {
+  display: inline-block;
+  border-radius: .2em;
+  padding: .2em .5em;
+  text-decoration: none;
+  color: #333;
+  background-color: #fff;
+  position: relative;
+}
+
+.tree li a:hover {
+  background-color: #f0f0f0;
+}
+
+.tree li a:hover + ul li a,
+.tree li a:hover + ul li::before,
+.tree li a:hover + ul li::after,
+.tree li a:hover + ul::before {
+  border-color: #94a0b4;
+} */
+
+
+.tree, .tree ul, .tree li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.tree {
+  margin: 0 0 1em;
+  text-align: center;
+}
+
+.tree ul {
+  display: table;
+  width: 100%;
+}
+
+.tree li {
+  display: table-cell;
+  padding: .5em 0;
+  vertical-align: top;
+  position: relative;
+}
+
+.tree li:before, .tree li:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: 1em;
+  border-top: 1px solid #666;
+}
+
+.tree li:after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #666;
+}
+
+.tree li:only-child:before, .tree li:only-child:after {
+  display: none;
+}
+
+.tree li:only-child {
+  padding-top: 0;
+}
+
+.tree li:first-child:before, .tree li:last-child:after {
+  border: 0 none;
+}
+
+.tree li:last-child:before {
+  border-right: 1px solid #666;
+  border-radius: 0 0 0 0;
+}
+
+.tree li:first-child:after {
+  border-radius: 0 0 0 0;
+}
+
+.tree ul ul:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0.2em;
+  border-left: 1px solid #666;
+}
+
+.tree li a {
+  display: inline-block;
+  border-radius: .2em;
+  padding: .2em .5em;
+  text-decoration: none;
+  color: #333;
+  background-color: #fff;
+  position: relative;
+}
+
+.tree li a:hover {
+  background-color: #f0f0f0;
+}
+
+.tree li a:hover + ul li a,
+.tree li a:hover + ul li::before,
+.tree li a:hover + ul li::after,
+.tree li a:hover + ul::before {
+  border-color: #94a0b4;
+}
+
+/* Highlight child nodes on parent hover */
+.tree li:hover > ul > li > a {
+  background-color: #f0f0f0;
+}
+/* ------------------ -------------- tree end -------------   */

@@ -11,7 +11,11 @@ import totalIncome from "../assets/total-income.json";
 import wallet from "../assets/wallet.json";
 import cashback from "../assets/cashback.json";
 import { useDispatch, useSelector } from "react-redux";
-import {  getDataofDashboard, getMarque, popupSlider,  } from "../redux/slice/DashboardAndUser_slice";
+import {
+  getDataofDashboard,
+  getMarque,
+  popupSlider,
+} from "../redux/slice/DashboardAndUser_slice";
 import Loader from "../components/Loader";
 import ModalPopupDashboard from "../components/ModalPopupDashboard";
 
@@ -27,7 +31,6 @@ const Dashboard = () => {
     (state) => state.dashboard_profile?.marqueData?.data
   );
 
-
   const loading = useSelector((state) => state.dashboard_profile?.loading);
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -35,8 +38,8 @@ const Dashboard = () => {
     }, 200);
     return () => clearTimeout(timeout);
   }, []);
-    const isopen = JSON.parse(localStorage.getItem("model"))
-    console.log("isopen" , isopen)
+  const isopen = JSON.parse(localStorage.getItem("model"));
+  console.log("isopen", isopen);
 
   const cards = [
     {
@@ -111,7 +114,6 @@ const Dashboard = () => {
       borderColor: "border-blue-500",
       bgColor: "bg-pink-50",
     },
-    
   ];
 
   // here is calling api
@@ -123,31 +125,28 @@ const Dashboard = () => {
     dispatch(getMarque("note"));
   }, []);
 
- 
-
   return (
     <>
       {" "}
       {loading && <Loader loading={loading} />}
       <div className="flex items-center justify-center">
-      <ModalPopupDashboard  open={isopen} />
-
-    </div>
+        <ModalPopupDashboard open={isopen} />
+      </div>
       <SideBarHeader />
-      <div className="flex-1 px-6 py-2">
+      <div className="flex-1 md:px-6 px-2 py-2">
         <h1 className="text-xl mb-4 font-semibold text-gray-800 text-shadow">
           Downline Details
         </h1>
         <hr />
 
-        <div className="bg-gray-100 border border-gray-300 rounded-md shadow-md p-4 flex items-center mt-4">
+        <div className="bg-gray-100 border border-gray-300 rounded-md shadow-md p-4 flex flex-col sm:flex-row items-center mt-4">
           {/* Left Section */}
-          <div className="bg-green-500 text-white font-semibold text-sm px-3 py-3 w-[10%] text-center rounded-l-md">
+          <div className="bg-green-500 text-white font-semibold text-sm px-3 py-3 w-full sm:w-[10%] text-center rounded-t-md sm:rounded-l-md sm:rounded-t-none">
             Note
           </div>
 
           {/* Marquee Section */}
-          <div className="flex-1 bg-white p-2 overflow-hidden ">
+          <div className="flex-1 bg-white p-2 overflow-hidden w-full sm:w-auto rounded-b-md sm:rounded-b-none">
             <marquee className="text-gray-700 font-medium">
               {MarqueeData?.homeNote}
             </marquee>
@@ -173,7 +172,7 @@ const Dashboard = () => {
                   style={{ width: "50px", height: "50px" }}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col text-end pr-2">
                 <span className="text-gray-800 font-bold text-xl">
                   {card.value}
                 </span>
@@ -185,8 +184,6 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
-
-     
     </>
   );
 };
