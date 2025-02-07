@@ -1,9 +1,12 @@
+
+
 import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import wallet from "../assets/wallet.json";
 import cashback from "../assets/projectsuccess.json";
+import join from "../assets/joinsucces.json";
 import Loader from "./Loader";
 import {
   CreateJoinProdect,
@@ -16,9 +19,9 @@ import { showToast } from "../utils/Config";
 const Join_Model = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const userData = JSON.parse(localStorage.getItem("userData"));
-  const [isAnimating, setIsAnimating] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedPackage, setSelectedPackage] = useState("");
+  const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
   const navigate = useNavigate();
   const allProfileData = useSelector(
     (state) => state.dashboard_profile?.profileData?.data
@@ -49,14 +52,20 @@ const Join_Model = ({ isOpen, onClose }) => {
     try {
       const res = await dispatch(CreateJoinProdect(formData));
       if (res?.payload?.status === 200) {
-        showToast("join successfully", "success");
+        showToast("Joined successfully", "success");
+        setShowSuccessAnimation(true);
+
+        // Auto close modal after animation completes
+        setTimeout(() => {
+          setShowSuccessAnimation(false);
+          onClose();
+        }, 3000); // Wait for 3 seconds before closing
       } else {
         showToast(res?.payload?.msg, "error");
       }
     } catch (error) {
       showToast(error, "error");
     }
-    onClose();
   };
 
   const handleCategoryChange = (e) => {
@@ -66,6 +75,7 @@ const Join_Model = ({ isOpen, onClose }) => {
   const handlePackageChange = (e) => {
     setSelectedPackage(e.target.value);
   };
+
   // Fetch profile data on component mount
   useEffect(() => {
     dispatch(getProfileData(userData?.user_id));
@@ -79,7 +89,6 @@ const Join_Model = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {" "}
       {loading && <Loader loading={loading} />}
       <div
         className={`fixed inset-0 z-50 flex items-center justify-center bg-[#1F2937] bg-opacity-50 transition-opacity duration-500 ${
@@ -93,7 +102,6 @@ const Join_Model = ({ isOpen, onClose }) => {
             isOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"
           }`}
         >
-          {/* Close Button */}
           <button
             className="absolute top-2 right-2 text-white text-2xl hover:text-gray-400"
             onClick={onClose}
@@ -101,22 +109,17 @@ const Join_Model = ({ isOpen, onClose }) => {
             <FaTimes />
           </button>
 
-          {isAnimating ? (
-            // Lottie Animation with Dark Background
-            <div className="absolute inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 rounded-lg">
-              <Lottie
-                animationData={cashback}
-                style={{ width: "250px", height: "250px" }}
-              />
+          {showSuccessAnimation ? (
+            // Show success animation before closing
+            <div className="flex items-center justify-center">
+              <Lottie animationData={join} style={{ width: "300px", height: "300px" }} />
             </div>
           ) : (
             <>
-              {/* Modal Content */}
               <h2 className="text-white text-lg font-bold mb-4">
                 Join a Package
               </h2>
 
-              {/* Wallet Section */}
               <div className="mb-4">
                 <label className="text-gray-300 block mb-2">Wallet:</label>
                 <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 rounded-md flex justify-between items-center">
@@ -130,33 +133,27 @@ const Join_Model = ({ isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Categories Section */}
               <div className="mb-4">
-                <label className="text-gray-300 block mb-2">Categories: <span className="text-red-600 ml-1"> * </span></label>
+                <label className="text-gray-300 block mb-2">
+                  Categories: <span className="text-red-600 ml-1"> * </span>
+                </label>
                 <select
                   className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 w-full rounded-md"
                   value={selectedCategory}
                   onChange={handleCategoryChange}
                 >
                   <option value="">Select</option>
-                  <option value="1" className="text-xs">
-                    Nifty50
-                  </option>
-                  <option value="2" className="text-xs">
-                    Bank Nifty
-                  </option>
-                  <option value="3" className="text-xs">
-                    USD
-                  </option>
-                  <option value="4" className="text-xs">
-                    Bitcoin
-                  </option>
+                  <option value="1" className="text-xs">Nifty50</option>
+                  <option value="2" className="text-xs">Bank Nifty</option>
+                  <option value="3" className="text-xs">USD</option>
+                  <option value="4" className="text-xs">Bitcoin</option>
                 </select>
               </div>
 
-              {/* Packages Section */}
               <div className="mb-6">
-                <label className="text-gray-300 block mb-2">Packages:  <span className="text-red-600 ml-1"> * </span></label>
+                <label className="text-gray-300 block mb-2">
+                  Packages: <span className="text-red-600 ml-1"> * </span>
+                </label>
                 <select
                   className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 w-full rounded-md"
                   value={selectedPackage}
@@ -170,15 +167,12 @@ const Join_Model = ({ isOpen, onClose }) => {
                         key={index}
                         value={ele.id}
                       >
-                        <div>
-                          <p>{ele?.product_name} </p>
-                        </div>
+                        {ele?.product_name}
                       </option>
                     ))}
                 </select>
               </div>
 
-              {/* Join Button */}
               <button
                 className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition"
                 onClick={handleJoin}
