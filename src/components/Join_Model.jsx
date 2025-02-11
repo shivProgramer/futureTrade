@@ -138,7 +138,7 @@ const Join_Model = ({ isOpen, onClose }) => {
                   Categories: <span className="text-red-600 ml-1"> * </span>
                 </label>
                 <select
-                  className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 w-full rounded-md"
+                  className="bg-gray-800 text-white px-4 py-2 w-full rounded-md"
                   value={selectedCategory}
                   onChange={handleCategoryChange}
                 >
@@ -155,7 +155,7 @@ const Join_Model = ({ isOpen, onClose }) => {
                   Packages: <span className="text-red-600 ml-1"> * </span>
                 </label>
                 <select
-                  className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 py-2 w-full rounded-md"
+                  className="bg-gray-800 text-white px-4 py-2 w-full rounded-md"
                   value={selectedPackage}
                   onChange={handlePackageChange}
                 >

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/whitelogo.png";
+import logo from "../assets/loginlogo.png";
 import wallet from "../assets/wallet.json";
 import home from "../assets/home.json";
 import Fund from "../assets/fund.json";
@@ -20,34 +20,29 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [animation, setAnimation] = useState(kyc);
 
   useEffect(() => {
-    if (!allkycdata) return; // Ensure data exists before proceeding
+    if (!allkycdata) return; 
 
     const status = allkycdata?.status;
 
     if (status === 1) {
-      setAnimation(kyc); // Keep default animation (no color change)
+      setAnimation(kyc); 
       return;
     }
 
-    // Define color mapping based on status
     const colorMap = {
-      0: [1, 1, 0, 1], // Yellow for pending (status 0)
-      2: [1, 0, 0, 1], // Red for failed (status 2)
+      0: [1, 1, 0, 1], 
+      2: [1, 0, 0, 1], 
     };
 
-    if (!colorMap[status]) return; // If status is not in colorMap, do nothing
-
-    // Deep copy animation data
+    if (!colorMap[status]) return; 
     let updatedAnimation = JSON.parse(JSON.stringify(kyc));
-
-    // Apply color changes where needed
     updatedAnimation.layers.forEach((layer) => {
       if (layer.shapes) {
         layer.shapes.forEach((shape) => {
           if (shape.it) {
             shape.it.forEach((item) => {
               if (item.c && colorMap[status]) {
-                item.c.k = colorMap[status]; // Apply color change
+                item.c.k = colorMap[status];
               }
             });
           }
@@ -87,11 +82,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           backgroundBlendMode: "overlay", 
         }}
       >
-        <h2 className="text-3xl my-3 font-bold text-center text-blue-500 mb-5">
+        <h2 className="text-3xl rounded-b-2xl  p-2 font-bold text-center bg-[#ffffff]  text-blue-500 mb-5">
           <img
             src={logo}
             alt="VS Logo"
-            className="w-40 h-24 my-1 mx-auto"
+            className="w-24 h-20 my-1 mx-auto"
           />
         </h2>
         <ul className="mt-10">
