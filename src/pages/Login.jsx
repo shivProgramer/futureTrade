@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Fade, Slide } from "react-awesome-reveal";
 import { useDispatch } from "react-redux";
 import { loginApi } from "../redux/slice/Auth_slice";
-import video from "../../src/assets/loginvideo.mp4";
+import video from "../../src/assets/logoanimation_video.mp4";
 import { showToast } from "../utils/Config";
 
 const Login = () => {
@@ -79,6 +79,7 @@ const Login = () => {
           className="w-full h-full object-cover"
           autoPlay
           onEnded={handleVideoEnd}
+          poster="thumbnail.jpg" 
         />
       </div>
     );

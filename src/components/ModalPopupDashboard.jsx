@@ -24,12 +24,11 @@ const ModalPopupDashboard = ({ open }) => {
   useEffect(() => {
     if (open) {
       setIsOpen(true);
-      dispatch(popupSlider("slider")); // Fetch slider data
+      dispatch(popupSlider("slider")); 
 
-      // Delay auto-play start to ensure it triggers without manual click
       setTimeout(() => {
         setStartAutoPlay(true);
-      }, 500); // Small delay to allow rendering
+      }, 500); 
     }
   }, [open, dispatch]);
 

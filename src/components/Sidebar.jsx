@@ -86,7 +86,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <img
             src={logo}
             alt="VS Logo"
-            className="w-24 h-20 my-1 mx-auto"
+            className="w-24 h-16 my-1 mx-auto"
           />
         </h2>
         <ul className="mt-10">
