@@ -8,7 +8,6 @@ import {
   updateProfile,
 } from "../redux/slice/DashboardAndUser_slice";
 import Loader from "../components/Loader";
-import { use } from "react";
 import { showToast } from "../utils/Config";
 
 const Profile = () => {
@@ -24,7 +23,6 @@ const Profile = () => {
     }, 200);
     return () => clearTimeout(timeout);
   }, []);
-
 
   const handleImageUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -65,12 +63,12 @@ const Profile = () => {
   const allProfileData = useSelector(
     (state) => state.dashboard_profile?.profileData?.data
   );
+
   const loading = useSelector((state) => state.dashboard_profile?.loading);
-  
+
   const phone = useSelector(
     (state) => state.dashboard_profile?.SupportAb_us_Term_Status?.data
   );
-  console.log("phone", phone?.support);
 
   useEffect(() => {
     dispatch(getProfileData(userData?.user_id));
@@ -81,12 +79,17 @@ const Profile = () => {
   }, [dispatch]);
 
   const handleNavigation = (path) => {
+    alert(path);
     if (path === "/admin/profile") {
       const phoneNumber = phone?.support?.replace("https://wa.me/", "");
       const url = `https://api.whatsapp.com/send/?phone=${phoneNumber}&text=Hello, I need support.&type=phone_number&app_absent=0`;
       window.open(url, "_blank");
+    } else if (path === "/login") {
+     localStorage.clear();
+         showToast("Logout successful.", "success");
+         navigate("/admin/dashboard");
     } else {
-      navigate(path); 
+      navigate(path);
     }
   };
 
@@ -180,39 +183,6 @@ const Profile = () => {
               </div>
             </div>
           </div>
-
-          {/* Add other profile elements here */}
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              {
-                icon: "🏦",
-                label: "Bank Details",
-                path: "/admin/bank-details",
-              },
-              { icon: "👨‍👩‍👧", label: "Team", path: "/admin/team-tree" },
-              { icon: "ℹ️", label: "About Us", path: "/admin/aboutus" },
-              { icon: "📋", label: "T&C", path: "/admin/term_conditions" },
-              { icon: "🤝", label: "Support", path: "/admin/profile" },
-              { icon: "🪪", label: "KYC", path: "/admin/kyc" },
-              { icon: "🔒", label: "Privacy Policy", path: "/admin/profile" },
-              
-            ].map((item, index) => (
-              <button
-                key={index}
-                onClick={() => handleNavigation(item.path)}
-                className={`flex items-center justify-between p-4 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transform transition-all duration-500 ${
-                  showProfile
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-90 translate-y-5"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <span className="text-2xl">{item.icon}</span>
-                <span className="font-medium text-gray-600">{item.label}</span>
-              </button>
-            ))}
-          </div> */}
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               {
@@ -226,6 +196,7 @@ const Profile = () => {
               { icon: "🤝", label: "Support", path: "/admin/profile" },
               { icon: "🪪", label: "KYC", path: "/admin/kyc" },
               { icon: "🔒", label: "Privacy Policy", path: "/admin/privacy" },
+              { icon: "🔒", label: "Logout", path: "/login" },
             ].map((item, index) => (
               <button
                 key={index}

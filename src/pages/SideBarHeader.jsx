@@ -4,18 +4,30 @@ import logo from "../assets/newlogo.jpg";
 import Join_Model from "../components/Join_Model";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { showToast } from "../utils/Config";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileData } from "../redux/slice/DashboardAndUser_slice";
 
 const SideBarHeader = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userData = JSON.parse(localStorage.getItem("userData"));
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const closeDropdown = () => setDropdownOpen(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
-  
+
+  const allProfileData = useSelector(
+    (state) => state.dashboard_profile?.profileData?.data
+  );
+
+  console.log("allProfileData ---22", allProfileData);
+  useEffect(() => {
+    dispatch(getProfileData(userData?.user_id));
+  }, [dispatch, userData?.user_id]);
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!event.target.closest(".dropdown-container")) {
@@ -39,7 +51,7 @@ const SideBarHeader = () => {
         <img src={logo} alt="VS Logo" className="w-12 h-12 object-contain" />
         <h1 className="text-lg font-bold hidden sm:block">Dashboard</h1>
       </div>
-      
+
       {/* Right Section */}
       <div className="flex items-center space-x-4 dropdown-container">
         {/* Join Product Button */}
@@ -50,28 +62,38 @@ const SideBarHeader = () => {
           Join Product
         </button>
         <Join_Model isOpen={isModalOpen} onClose={handleCloseModal} />
-        
+
         {/* Profile Dropdown */}
         <button
-          className="flex items-center space-x-2 px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition"
+          className="flex items-center space-x-2 px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-900 transition"
           onClick={toggleDropdown}
         >
           <p className="hidden sm:block uppercase text-sm font-semibold">
             {userData?.name || "User"}
           </p>
-          <FaUserCircle className="text-2xl" />
+          {allProfileData?.photo ? <img
+            src={`https://root2.futureservices.services/uploads/${allProfileData?.photo}`}
+            alt="Profile"
+            className="w-7 h-7 object-cover rounded-full"
+          /> : <FaUserCircle className="text-2xl" /> }
+          
+          
           <FaChevronDown className="hidden sm:inline" />
         </button>
-        
+
         {/* Dropdown Menu */}
         {dropdownOpen && (
           <div className="absolute right-4 top-14 w-48 bg-white text-gray-700 shadow-lg rounded-md overflow-hidden z-50">
             <ul>
               <NavLink to="/admin/profile">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2 hover:border-green-500">Profile</li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2 hover:border-green-500">
+                  Profile
+                </li>
               </NavLink>
               <NavLink to="/admin/change-password">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2 hover:border-green-500">Change Password</li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2 hover:border-green-500">
+                  Change Password
+                </li>
               </NavLink>
               <li
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-l-2 hover:border-red-500"
