@@ -25,7 +25,7 @@ const Home = () => {
               <span className="text-3xl font-medium">Own Your Dream Home</span>
             </h2>
             <p className="my-8 text-center text-gray-500 text-base px-4 md:px-20">
-              Future trade pvt ltd. is a real estate company that brings a
+              Future Services pvt ltd. is a real estate company that brings a
               modern approach to property financing, leveraging the collective
               power of many investors. Traditionally, real estate investments
               were the domain of wealthy individuals or institutional investors.
@@ -56,7 +56,7 @@ const Home = () => {
                 className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
                 data-wow-delay="0.2s"
               >
-                At Future trade pvt ltd., we specialize in creating exceptional
+                At Future Services pvt ltd., we specialize in creating exceptional
                 real estate experiences. From modern residential complexes to
                 state-of-the-art commercial spaces, our mission is to deliver
                 unmatched quality and trust in every project. With years of
@@ -97,7 +97,7 @@ const Home = () => {
               <span className="text-3xl font-medium"> business needs </span>
             </h2>
             <p className="my-8 text-center text-gray-500 text-base px-4 md:px-20">
-              At Future trade pvt ltd., we take pride in crafting spaces that
+              At Future Services pvt ltd., we take pride in crafting spaces that
               inspire and empower. With a legacy of trust and excellence, we
               specialize in delivering top-notch real estate solutions that
               cater to your lifestyle and business needs. From premium
@@ -120,7 +120,7 @@ const Home = () => {
                   className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
                   data-wow-delay="0.2s"
                 >
-                  Future trade pvt ltd. is building strong, connected
+                  Future Services pvt ltd. is building strong, connected
                   communities while exceeding expectations. Think of us as the
                   glue that keeps the three key parts of property
                   management—owners, properties, and residents—running
@@ -131,7 +131,7 @@ const Home = () => {
                   className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
                   data-wow-delay="0.2s"
                 >
-                  Future trade pvt ltd. is aware that the efficiency of solving
+                  Future Services pvt ltd. is aware that the efficiency of solving
                   tasks that face the corporation directly depends on the
                   professionalism and motivation of our colleagues. Our team
                   consists of highly skilled specialists in finance and,

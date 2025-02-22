@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/newlogo.jpg";
+import logo from "../assets/outer_logo.jpeg";
 import { MdPhoneInTalk } from "react-icons/md";
 import { MdOutlineEmail } from "react-icons/md";
 

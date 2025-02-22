@@ -39,7 +39,7 @@ const AboutUs = () => {
                 <p className="mb-4">
                   Welcome to{" "}
                   <span className="font-bold">
-                    Future trade pvt ltd.
+                    Future Services pvt ltd.
                   </span>
                   , a dynamic and forward-thinking company dedicated to driving
                   innovation and excellence in the infrastructure and technology
@@ -50,7 +50,7 @@ const AboutUs = () => {
                   domains.
                 </p>
                 <p>
-                  At Future trade , we believe in the power of technology to
+                  At Future Services , we believe in the power of technology to
                   reshape the future. Our team is committed to delivering
                   high-quality, sustainable, and efficient infrastructure
                   development solutions, combining the best of engineering,
@@ -70,7 +70,7 @@ const AboutUs = () => {
             </h3>
             <p className="text-center mb-12 ">
               Join us on our journey as we continue to build the future, one
-              project at a time. At Future trade pvt ltd., we’re not
+              project at a time. At Future Services pvt ltd., we’re not
               just constructing buildings and roads — we’re constructing a
               better tomorrow.
             </p>

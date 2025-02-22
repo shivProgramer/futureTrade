@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import logo from "../assets/pic2.png";
+import logo from "../assets/outer_logo.jpeg";;
 import { useNavigate } from "react-router-dom";
 import { Fade, Slide } from "react-awesome-reveal";
 import { useDispatch } from "react-redux";

@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -111,8 +109,15 @@ const Join_Model = ({ isOpen, onClose }) => {
 
           {showSuccessAnimation ? (
             // Show success animation before closing
+            // <div className="flex items-center justify-center">
+            //   <Lottie animationData={join} style={{ width: "300px", height: "300px" }} />
+            // </div>
             <div className="flex items-center justify-center">
-              <Lottie animationData={join} style={{ width: "300px", height: "300px" }} />
+              <img
+                src="https://user-images.githubusercontent.com/5460067/111782964-0c6bed80-8890-11eb-8a8b-0a4fdbc30cbd.gif"
+                alt="Animated GIF"
+                className="w-[300px] h-[300px]"
+              />
             </div>
           ) : (
             <>
@@ -143,10 +148,18 @@ const Join_Model = ({ isOpen, onClose }) => {
                   onChange={handleCategoryChange}
                 >
                   <option value="">Select</option>
-                  <option value="1" className="text-xs">Nifty50</option>
-                  <option value="2" className="text-xs">Bank Nifty</option>
-                  <option value="3" className="text-xs">USD</option>
-                  <option value="4" className="text-xs">Bitcoin</option>
+                  <option value="1" className="text-xs">
+                    Nifty50
+                  </option>
+                  <option value="2" className="text-xs">
+                    Bank Nifty
+                  </option>
+                  <option value="3" className="text-xs">
+                    USD
+                  </option>
+                  <option value="4" className="text-xs">
+                    Bitcoin
+                  </option>
                 </select>
               </div>
 

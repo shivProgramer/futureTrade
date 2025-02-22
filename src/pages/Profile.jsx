@@ -79,15 +79,14 @@ const Profile = () => {
   }, [dispatch]);
 
   const handleNavigation = (path) => {
-    alert(path);
     if (path === "/admin/profile") {
       const phoneNumber = phone?.support?.replace("https://wa.me/", "");
       const url = `https://api.whatsapp.com/send/?phone=${phoneNumber}&text=Hello, I need support.&type=phone_number&app_absent=0`;
       window.open(url, "_blank");
     } else if (path === "/login") {
-     localStorage.clear();
-         showToast("Logout successful.", "success");
-         navigate("/admin/dashboard");
+      localStorage.clear();
+      showToast("Logout successful.", "success");
+      navigate("/admin/dashboard");
     } else {
       navigate(path);
     }

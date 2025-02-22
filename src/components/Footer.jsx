@@ -1,6 +1,6 @@
 import React from "react";
 import bg from "../assets/asset 12.jpeg";
-import logo from "../assets/pic2.png";
+import logo from "../assets/outer_logo.jpeg";
 import { FaFacebookSquare, FaTwitter } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { FaLinkedin } from "react-icons/fa";
@@ -28,11 +28,11 @@ const Footer = () => {
             <div>
               <div className="mb-4">
                 <a href="#">
-                  <img src={logo} alt="Logo" className="h-20 w-20 mx-auto" />
+                  <img src={logo} alt="Logo" className="h-20 w-20 mx-auto rounded-full" />
                 </a>
               </div>
               <p>
-                Future trade pvt ltd., a dynamic platform that harnesses the
+                Future Services pvt ltd., a dynamic platform that harnesses the
                 power of collective investments to redefine real estate
                 transactions.
               </p>
