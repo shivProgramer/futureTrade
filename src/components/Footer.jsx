@@ -1,6 +1,6 @@
 import React from "react";
 import bg from "../assets/asset 12.jpeg";
-import logo from "../assets/outer_logo.jpeg";
+import logo from "../assets/outerbgremove.png";
 import { FaFacebookSquare, FaTwitter } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { FaLinkedin } from "react-icons/fa";
@@ -28,7 +28,7 @@ const Footer = () => {
             <div>
               <div className="mb-4">
                 <a href="#">
-                  <img src={logo} alt="Logo" className="h-20 w-20 mx-auto rounded-full" />
+                  <img src={logo} alt="Logo" className="h-24 w-24 mx-auto rounded-full" />
                 </a>
               </div>
               <p>

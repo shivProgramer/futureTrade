@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SideBarHeader from "./SideBarHeader";
+import { MdDomainVerification } from "react-icons/md";
+import { FaLayerGroup } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProfileData,
@@ -9,7 +11,7 @@ import {
 } from "../redux/slice/DashboardAndUser_slice";
 import Loader from "../components/Loader";
 import { showToast } from "../utils/Config";
-
+import { AiOutlineLogout } from "react-icons/ai";
 const Profile = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -189,13 +191,25 @@ const Profile = () => {
                 label: "Bank Details",
                 path: "/admin/bank-details",
               },
-              { icon: "👨‍👩‍👧", label: "Team", path: "/admin/team-tree" },
+              {
+                icon: <FaLayerGroup className="text-green-800" />,
+                label: "Team",
+                path: "/admin/team-tree",
+              },
               { icon: "ℹ️", label: "About Us", path: "/admin/aboutus" },
               { icon: "📋", label: "T&C", path: "/admin/term_conditions" },
               { icon: "🤝", label: "Support", path: "/admin/profile" },
-              { icon: "🪪", label: "KYC", path: "/admin/kyc" },
+              {
+                icon: <MdDomainVerification className="text-blue-800" />,
+                label: "KYC",
+                path: "/admin/kyc",
+              },
               { icon: "🔒", label: "Privacy Policy", path: "/admin/privacy" },
-              { icon: "🔒", label: "Logout", path: "/login" },
+              {
+                icon: <AiOutlineLogout className="text-red-800" />,
+                label: "Logout",
+                path: "/login",
+              },
             ].map((item, index) => (
               <button
                 key={index}
