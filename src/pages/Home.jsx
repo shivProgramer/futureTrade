@@ -1,17 +1,21 @@
 import React from "react";
 import Carousel from "../components/Carousel";
 import { MdOutlineEmail } from "react-icons/md";
+import ourCompany from "../assets/ourCompany.avif"
+import ourIdentity from "../assets/our_identity.avif"
+import infrastructure from "../assets/infrastructure.avif"
+import technology from "../assets/technology.avif"
+import projectManagement from "../assets/projectmanage.avif"
 const Home = () => {
   return (
     <div className="text-center min-h-screen flex flex-col items-center mt-16 md:mt-24">
       {/* Carousel Component */}
       <Carousel />
-
       <section className="featured-area py-10">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center aboutSection">
             <h2
-              className="text-center mb-5 mt-3 text-[#DEB271] text-4xl font-bold uppercase wow animate__animated animate__bounceInRight"
+              className="text-center mb-5 mt-3 text-[#284283] text-4xl font-bold uppercase wow animate__animated animate__bounceInRight"
               data-wow-delay="0.1s"
             >
               <span className="block text-4xl font-[500] text-shadow">
@@ -37,13 +41,13 @@ const Home = () => {
               data-wow-delay="0.2s"
             >
               <img
-                src="https://vstechinfra.com/assets/images/img/about.png"
+                src={ourCompany}
                 alt="About Image"
                 className="w-full rounded-lg transition-transform transform hover:scale-110 duration-300 ease-in-out"
               />
             </div>
             <div className="w-full md:w-1/2 px-4">
-              <p className="text-2xl font-semibold text-[#0bb4cd] flex items-center">
+              <p className="text-2xl font-semibold text-[#284283] flex items-center">
                 <img
                   src="https://vstechinfra.com/assets/images/icon/building.gif"
                   alt="Building Icon"
@@ -84,7 +88,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center">
             <h2
-              className="text-center mb-5 mt-3 text-[#DEB271] text-4xl font-bold uppercase wow animate__animated animate__bounceInRight"
+              className="text-center mb-5 mt-3 text-[#284283] text-4xl font-bold uppercase wow animate__animated animate__bounceInRight"
               data-wow-delay="0.1s"
             >
               <span className="block text-4xl font-[500] text-shadow ">
@@ -107,7 +111,7 @@ const Home = () => {
 
             <div className="w-full md:w-1/2 px-4 mt-3">
               <div className="solution-content">
-                <p className="text-xl font-semibold text-[#0bb4cd] flex items-center">
+                <p className="text-xl font-semibold text-[#284283] flex items-center">
                   <img
                     src="https://vstechinfra.com/assets/images/icon/building.gif"
                     alt="Building Icon"
@@ -149,7 +153,7 @@ const Home = () => {
             >
               <div className="about-image h-full">
                 <img
-                  src="https://vstechinfra.com/assets/images/ab.jpg"
+                  src={ourIdentity}
                   alt="About the company"
                   className="w-full rounded-lg transition-transform transform hover:scale-110 duration-300 ease-in-out"
                 />
@@ -158,16 +162,15 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       {/* ------ */}
       <section className="choose-area pt-10">
         <div className="container mx-auto px-4">
           <div className="section-title wow animate__animated animate__bounceInLeft mb-10">
-            <h3 className="mb-10">
-              <span className="block text-4xl font-[400] text-[#DEB271] text-shadow">
+            <h3 className="mb-10 text-[#284283]">
+              <span className="block text-4xl font-[400]  text-shadow">
                 WHY CHOOSE US
               </span>
-              <span className="text-[#DEB271] text-4xl font-[300]">
+              <span className=" text-4xl font-[300]">
                 Innovative and sustainable projects <br /> enhance lifestyles
               </span>
             </h3>
@@ -234,13 +237,11 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       {/* ---- */}
-
       <section className="facilities-area pt-24 pb-16 ">
         <div className="container mx-auto px-4">
           <div className="section-title text-center mb-8">
-            <span className="text-[#DEB271] text-4xl uppercase font-[500] text-shadow">
+            <span className="text-[#284283] text-4xl uppercase font-[500] text-shadow">
               Our Best Services
             </span>
             <p className="text-center mt-2 text-gray-500">
@@ -258,7 +259,7 @@ const Home = () => {
               <div className="single-facilities">
                 <div className="image mb-4">
                   <img
-                    src="https://vstechinfra.com/assets/images/Services1.jpg"
+                    src={infrastructure}
                     alt="Infrastructure Development"
                     className="w-full rounded-lg"
                   />
@@ -280,7 +281,7 @@ const Home = () => {
               <div className="single-facilities">
                 <div className="image mb-4">
                   <img
-                    src="https://vstechinfra.com/assets/images/Services2.jpg"
+                    src={technology}
                     alt="Technology Integration"
                     className="w-full rounded-lg"
                   />
@@ -302,7 +303,7 @@ const Home = () => {
               <div className="single-facilities">
                 <div className="image mb-4">
                   <img
-                    src="https://vstechinfra.com/assets/images/Services3.jpg"
+                    src={projectManagement}
                     alt="Project Management"
                     className="w-full rounded-lg"
                   />
@@ -326,7 +327,7 @@ const Home = () => {
             <div className="row grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               {/* Left Content */}
               <div className="w-full">
-                <h2 className="text-4xl font-medium text-[#DEB271] text-shadow">
+                <h2 className="text-4xl font-medium text-[#284283] text-shadow">
                   Newsletter
                 </h2>
                 <p className="mt-4 text-gray-500">
@@ -343,7 +344,7 @@ const Home = () => {
                   >
                     <input
                       type="email"
-                      className="form-control form-control-lg w-full sm:flex-grow p-3.5 rounded-lg border border-[#DEB271] focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="form-control form-control-lg w-full sm:flex-grow p-3.5 rounded-lg border border-[#284283] focus:outline-none focus:ring-2 focus:ring-blue-400"
                       placeholder="Email Address"
                       name="EMAIL"
                       required
@@ -351,7 +352,7 @@ const Home = () => {
                     />
                     <button
                       type="submit"
-                      className="btn btn-dark bg-[#DEB271] text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition"
+                      className="btn btn-dark bg-[#284283] text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition"
                     >
                       <MdOutlineEmail size={35} />
                     </button>

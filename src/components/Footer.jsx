@@ -88,13 +88,13 @@ const Footer = () => {
                     123 Maple Street, Sector 7, Green Valley, New Delhi
                   </a>
                 </li>
-                <li>+91 9876543210</li>
+                <li>+91 9554904444</li>
                 <li>
                   <a
                     href="mailto:contact@techsolution.com"
                     className="hover:underline"
                   >
-                    contact@techsolution.com
+                    utureservices666@gmail.com
                   </a>
                 </li>
               </ul>

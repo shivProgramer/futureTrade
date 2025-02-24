@@ -1,9 +1,7 @@
-
-
 import React, { useState, useEffect } from "react";
-import assest9 from "../assets/asset 9.jpeg";
-import assest8 from "../assets/asset 8.png";
-import assest10 from "../assets/asset 9.jpeg";
+import assest9 from "../assets/carusel1.avif";
+import assest8 from "../assets/carousel4.avif";
+import assest10 from "../assets/carousel3.avif";
 
 const Carousel = () => {
   // State to track the current image index
@@ -14,9 +12,19 @@ const Carousel = () => {
 
   // List of texts corresponding to each image
   const texts = [
-    { title: "One Foundation at a Time", description: "	Proven track record in real estate development..." },
-    { title: "Focus on innovation and sustainability", description: "A destination born out of the mindset to be exceptional..." },
-    { title: "Future trade pvt ltd .", description: "we specialize in creating exceptional real estate experiences..." },
+    {
+      title: "One Foundation at a Time",
+      description: "	Proven track record in real estate development...",
+    },
+    {
+      title: "Focus on innovation and sustainability",
+      description: "A destination born out of the mindset to be exceptional...",
+    },
+    {
+      title: "Future trade pvt ltd .",
+      description:
+        "we specialize in creating exceptional real estate experiences...",
+    },
   ];
 
   // Function to change to the next image
@@ -63,8 +71,12 @@ const Carousel = () => {
             index === currentIndex ? "block" : "hidden"
           }`}
         >
-          <h1 className="text-2xl md:text-4xl font-medium mb-2 text-start text-shadow">{text.title}</h1>
-          <p className="text-sm md:text-base font-medium text-start">{text.description}</p>
+          <h1 className="text-2xl md:text-4xl font-medium mb-2 text-start text-shadow">
+            {text.title}
+          </h1>
+          <p className="text-sm md:text-base font-medium text-start">
+            {text.description}
+          </p>
         </div>
       ))}
 

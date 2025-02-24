@@ -1,5 +1,6 @@
 import React from "react";
 import img from "../assets/asset 11.jpeg";
+import about from "../assets/about_us.webp";
 import { MdOutlineEmail } from "react-icons/md";
 const AboutUs = () => {
   return (
@@ -8,7 +9,7 @@ const AboutUs = () => {
         {/* Background Image */}
         <img src={img} alt="About Us" className="w-full h-full object-cover" />
         <div className="absolute inset-0 flex flex-col justify-center items-start pl-8 md:pl-16 bg-black bg-opacity-40 text-white">
-          <h3 className="text-3xl md:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-[#BB9532] text-shadow">
+          <h3 className="text-3xl md:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-[#087ce8] text-shadow">
             About The Company
           </h3>
           <p className="text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-white to-[#3256bb]">
@@ -25,17 +26,19 @@ const AboutUs = () => {
             <div className="lg:w-5/12 w-full mb-8 lg:mb-0">
               <div className="about-image">
                 <img
-                  src="https://vstechinfra.com/assets/images/about-1.jpg"
+                  src={about}
                   alt="About"
-                  className="rounded-lg "
+                  className="rounded-lg w-full h-full object-cover"
                 />
               </div>
             </div>
 
             {/* Right Column - Content */}
-            <div className="lg:w-7/12 w-full">
-              <div className="solution-content">
-                <h2 className="text-3xl font-bold mb-4 text-shadow">About Us</h2>
+            <div className="lg:w-7/12 ">
+              <div className="solution-content ml-4 md:ml-10 ">
+
+                <h2 className="text-3xl text-[#284283] font-bold mb-4 text-shadow">About Us</h2>
+
                 <p className="mb-4">
                   Welcome to{" "}
                   <span className="font-bold">
@@ -65,7 +68,7 @@ const AboutUs = () => {
 
           {/* Core Values */}
           <div className="mt-16">
-            <h3 className="text-2xl font-semibold text-center mb-6 text-shadow">
+            <h3 className="text-2xl text-[#284283] font-semibold text-center mb-6 text-shadow">
               Our Core Values
             </h3>
             <p className="text-center mb-12 ">
@@ -126,7 +129,7 @@ const AboutUs = () => {
             <div className="row grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               {/* Left Content */}
               <div className="w-full">
-                <h2 className="text-4xl font-medium text-[#DEB271] text-shadow">
+                <h2 className="text-4xl font-medium text-[#284283] text-shadow">
                   Newsletter
                 </h2>
                 <p className="mt-4 text-gray-500">
@@ -143,7 +146,7 @@ const AboutUs = () => {
                   >
                     <input
                       type="email"
-                      className="form-control form-control-lg w-full sm:flex-grow p-3.5 rounded-lg border border-[#DEB271] focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="form-control form-control-lg w-full sm:flex-grow p-3.5 rounded-lg border border-[#284283] focus:outline-none focus:ring-2 focus:ring-blue-400"
                       placeholder="Email Address"
                       name="EMAIL"
                       required
@@ -151,7 +154,7 @@ const AboutUs = () => {
                     />
                     <button
                       type="submit"
-                      className="btn btn-dark bg-[#DEB271] text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition"
+                      className="btn btn-dark bg-[#284283] text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition"
                     >
                       <MdOutlineEmail size={35} />
                     </button>

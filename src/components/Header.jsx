@@ -30,11 +30,11 @@ const Header = () => {
           <div className="flex justify-center gap-5">
             <MdPhoneInTalk
               size={35}
-              className="bg-[#BB9532] text-white p-2 rounded-full"
+              className="bg-[#284283] text-white p-2 rounded-full"
             />
             <MdOutlineEmail
               size={35}
-              className="bg-[#BB9532] text-white p-2 rounded-full"
+              className="bg-[#284283] text-white p-2 rounded-full"
             />
           </div>
 
