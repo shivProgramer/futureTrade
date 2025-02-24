@@ -1,6 +1,7 @@
 import React from "react";
 import bg from "../assets/asset 12.jpeg";
 import logo from "../assets/outerbgremove.png";
+import bg1 from "../assets/image2.jpg";
 import { FaFacebookSquare, FaTwitter } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { FaLinkedin } from "react-icons/fa";
@@ -19,7 +20,7 @@ const Footer = () => {
       }}
     >
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black opacity-40"></div>
+      <div className="absolute inset-0 bg-black opacity-50"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 ">
@@ -32,7 +33,7 @@ const Footer = () => {
                 </a>
               </div>
               <p>
-                Future Services pvt ltd., a dynamic platform that harnesses the
+                Meta Future Services pvt ltd., a dynamic platform that harnesses the
                 power of collective investments to redefine real estate
                 transactions.
               </p>
@@ -85,24 +86,21 @@ const Footer = () => {
               <ul className="space-y-4">
                 <li>
                   <a href="#" className="hover:underline">
-                    123 Maple Street, Sector 7, Green Valley, New Delhi
+                  Rishi Group of Companies Rishi Udyaan Opposite Kala Gaon Near Ram Swaroop Engineering College Faizabad Road , Lucknow., Canal Road, Anora Kala, Uttar Pradesh 226010, India
                   </a>
                 </li>
-                <li>+91 9554904444</li>
+                <li>+91 95549 04444</li>
                 <li>
-                  <a
-                    href="mailto:contact@techsolution.com"
-                    className="hover:underline"
-                  >
-                    utureservices666@gmail.com
-                  </a>
+                 
+               futureservices666@gmail.com
+                 
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Column 4: Social Links */}
-          <div className="text-center">
+          <div className="text-center mb-10 md:mb-2">
             <div>
               <h3 className="text-2xl font-bold mb-4 text-[#A6E1FC] uppercase">
                 Follow Us
@@ -153,7 +151,7 @@ const Footer = () => {
       <div className="bg-black py-4 absolute bottom-0 w-full">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm">
-            Copyright © {new Date().getFullYear()} Future trade pvt ltd. All
+            Copyright © {new Date().getFullYear()} Meta Future Services pvt ltd. All
             rights reserved.
           </p>
         </div>

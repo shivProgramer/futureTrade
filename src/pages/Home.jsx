@@ -1,11 +1,12 @@
 import React from "react";
 import Carousel from "../components/Carousel";
 import { MdOutlineEmail } from "react-icons/md";
-import ourCompany from "../assets/ourCompany.avif"
+import ourCompany from "../assets/pixelcut-export (9).jpg"
 import ourIdentity from "../assets/our_identity.avif"
 import infrastructure from "../assets/infrastructure.avif"
 import technology from "../assets/technology.avif"
 import projectManagement from "../assets/projectmanage.avif"
+
 const Home = () => {
   return (
     <div className="text-center min-h-screen flex flex-col items-center mt-16 md:mt-24">
@@ -29,7 +30,9 @@ const Home = () => {
               <span className="text-3xl font-medium">Own Your Dream Home</span>
             </h2>
             <p className="my-8 text-center text-gray-500 text-base px-4 md:px-20">
-              Future Services pvt ltd. is a real estate company that brings a
+            <span className="font-bold">
+                    Meta Future Services pvt ltd
+                  </span> is a real estate company that brings a
               modern approach to property financing, leveraging the collective
               power of many investors. Traditionally, real estate investments
               were the domain of wealthy individuals or institutional investors.
@@ -46,7 +49,7 @@ const Home = () => {
                 className="w-full rounded-lg transition-transform transform hover:scale-110 duration-300 ease-in-out"
               />
             </div>
-            <div className="w-full md:w-1/2 px-4">
+            <div className="w-full md:w-1/2 px-4 mt-5 md:mt-0">
               <p className="text-2xl font-semibold text-[#284283] flex items-center">
                 <img
                   src="https://vstechinfra.com/assets/images/icon/building.gif"
@@ -60,7 +63,9 @@ const Home = () => {
                 className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
                 data-wow-delay="0.2s"
               >
-                At Future Services pvt ltd., we specialize in creating exceptional
+                At <span className="font-bold">
+                    Meta Future Services pvt ltd
+                  </span> we specialize in creating exceptional
                 real estate experiences. From modern residential complexes to
                 state-of-the-art commercial spaces, our mission is to deliver
                 unmatched quality and trust in every project. With years of
@@ -101,7 +106,9 @@ const Home = () => {
               <span className="text-3xl font-medium"> business needs </span>
             </h2>
             <p className="my-8 text-center text-gray-500 text-base px-4 md:px-20">
-              At Future Services pvt ltd., we take pride in crafting spaces that
+              At <span className="font-bold">
+                    Meta Future Services pvt ltd
+                  </span> we take pride in crafting spaces that
               inspire and empower. With a legacy of trust and excellence, we
               specialize in delivering top-notch real estate solutions that
               cater to your lifestyle and business needs. From premium
@@ -124,7 +131,9 @@ const Home = () => {
                   className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
                   data-wow-delay="0.2s"
                 >
-                  Future Services pvt ltd. is building strong, connected
+                  <span className="font-bold">
+                    Meta Future Services pvt ltd
+                  </span> is building strong, connected
                   communities while exceeding expectations. Think of us as the
                   glue that keeps the three key parts of property
                   management—owners, properties, and residents—running
@@ -135,7 +144,9 @@ const Home = () => {
                   className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
                   data-wow-delay="0.2s"
                 >
-                  Future Services pvt ltd. is aware that the efficiency of solving
+                  <span className="font-bold">
+                    Meta Future Services pvt ltd
+                  </span> is aware that the efficiency of solving
                   tasks that face the corporation directly depends on the
                   professionalism and motivation of our colleagues. Our team
                   consists of highly skilled specialists in finance and,
@@ -215,7 +226,7 @@ const Home = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="choose-item shadow-2xl p-5 border-b-2 border-[#DEB271] 
+                className="choose-item shadow-2xl p-5 border-b-2 border-[#284183] 
             transition-all duration-300 hover:scale-105 hover:shadow-lg 
             active:scale-105 focus-within:scale-105"
                 style={{

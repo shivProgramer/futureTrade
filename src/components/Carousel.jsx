@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import assest9 from "../assets/carusel1.avif";
-import assest8 from "../assets/carousel4.avif";
-import assest10 from "../assets/carousel3.avif";
+import assest9 from "../assets/pixelcut-export (1).jpg";
+import assest8 from "../assets/pixelcut-export (4).jpg";
+import assest10 from "../assets/pixelcut-export (8).jpg";
 
 const Carousel = () => {
   // State to track the current image index

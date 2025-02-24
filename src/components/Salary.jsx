@@ -26,7 +26,7 @@ const Salary = () => {
             </div>
             <ul className="list-disc list-inside space-y-2 text-black mt-6">
               <li>Add minimum 2 downline with the fund of 6 Lacs.</li>
-              <li>For carry-on salary, extra 10% value of weaker downline.</li>
+              <li>For carry-on salary, extra 10-20% value of weaker downline.</li>
             </ul>
           </div>
 
