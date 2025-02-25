@@ -1,7 +1,7 @@
 import React from "react";
 import bg from "../assets/asset 12.jpeg";
 import logo from "../assets/outerbgremove.png";
-import bg1 from "../assets/image2.jpg";
+import bg1 from "../assets/imageforfooter.jpeg";
 import { FaFacebookSquare, FaTwitter } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { FaLinkedin } from "react-icons/fa";
@@ -20,7 +20,7 @@ const Footer = () => {
       }}
     >
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black opacity-20"></div>
+      <div className="absolute inset-0 bg-black opacity-5"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 ">

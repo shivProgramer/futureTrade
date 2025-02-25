@@ -14,6 +14,7 @@ const AdminAboutUs = () => {
   );
   const loading = useSelector((state) => state.dashboard_profile?.loading);
 
+  console.log("aboutData ---" , aboutData)
 
 
   useEffect(() => {

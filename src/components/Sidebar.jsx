@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/loginlogo.png";
+import logo from "../assets/sidebarlogo2.gif";
 import wallet from "../assets/wallet.json";
 import home from "../assets/home.json";
 import Fund from "../assets/fund.json";
@@ -82,11 +82,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           backgroundBlendMode: "overlay", 
         }}
       >
-        <h2 className="text-3xl rounded-b-2xl  p-2 font-bold text-center bg-[#ffffff]  text-blue-500 mb-5">
+        <h2 className="text-3xl rounded-b-2xl  p-2 font-bold text-center bg-gray-950  text-blue-500 mb-5">
           <img
             src={logo}
             alt="VS Logo"
-            className="w-24 h-20 my-1 mx-auto"
+            className="w-28 h-28 my-1 mx-auto"
           />
         </h2>
         <ul className="mt-10">

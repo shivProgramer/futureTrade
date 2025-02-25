@@ -1,11 +1,11 @@
 import React from "react";
 import Carousel from "../components/Carousel";
 import { MdOutlineEmail } from "react-icons/md";
-import ourCompany from "../assets/pixelcut-export (9).jpg"
-import ourIdentity from "../assets/our_identity.avif"
-import infrastructure from "../assets/infrastructure.avif"
-import technology from "../assets/technology.avif"
-import projectManagement from "../assets/projectmanage.avif"
+import ourCompany from "../assets/pixelcut-export (9).jpg";
+import ourIdentity from "../assets/our_identity.avif";
+import infrastructure from "../assets/infrastructure.avif";
+import technology from "../assets/technology.avif";
+import projectManagement from "../assets/projectmanage.avif";
 
 const Home = () => {
   return (
@@ -30,14 +30,13 @@ const Home = () => {
               <span className="text-3xl font-medium">Own Your Dream Home</span>
             </h2>
             <p className="my-8 text-center text-gray-500 text-base px-4 md:px-20">
-            <span className="font-bold">
-                    Meta Future Services pvt ltd
-                  </span> is a real estate company that brings a
-              modern approach to property financing, leveraging the collective
-              power of many investors. Traditionally, real estate investments
-              were the domain of wealthy individuals or institutional investors.
-              Crowdfunding democratizes this process, allowing anyone with an
-              internet connection to invest smaller sums into property ventures.
+              <span className="font-bold">Meta Future Services pvt ltd</span> is
+              a real estate company that brings a modern approach to property
+              financing, leveraging the collective power of many investors.
+              Traditionally, real estate investments were the domain of wealthy
+              individuals or institutional investors. Crowdfunding democratizes
+              this process, allowing anyone with an internet connection to
+              invest smaller sums into property ventures.
             </p>
             <div
               className="w-full mt-8 md:w-1/2 px-4 wow animate__animated animate__zoomIn"
@@ -57,20 +56,25 @@ const Home = () => {
                   width="30px"
                   className="mr-2"
                 />
-                OUR COMPANY
+                About Us
               </p>
               <p
                 className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
                 data-wow-delay="0.2s"
               >
-                At <span className="font-bold">
-                    Meta Future Services pvt ltd
-                  </span> we specialize in creating exceptional
-                real estate experiences. From modern residential complexes to
-                state-of-the-art commercial spaces, our mission is to deliver
-                unmatched quality and trust in every project. With years of
-                expertise, we bring your vision of a perfect home or business
-                space to life.
+                At{" "}
+                <span className="font-bold">Meta Future Services pvt ltd,</span>{" "}
+                we are committed to crafting outstanding real estate
+                experiences. Whether it's contemporary residential developments
+                or cutting-edge commercial properties, our goal is to uphold
+                excellence and trust in every project we undertake. With
+                extensive industry expertise, we transform your vision of an
+                ideal home or business space into reality. Like any investment,
+                real estate carries certain risks. However, the global rise of
+                real estate crowdfunding highlights its potential, blending
+                technological advancements with traditional property investment.
+                This innovative approach opens new opportunities for portfolio
+                diversification and access to the expansive real estate market.
               </p>
               <p
                 className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
@@ -97,7 +101,7 @@ const Home = () => {
               data-wow-delay="0.1s"
             >
               <span className="block text-4xl font-[500] text-shadow ">
-                OUR PURPOSE
+                OUR VISION
               </span>
               <span className="text-3xl font-medium">
                 Modern infrastructure tailored to your
@@ -106,14 +110,12 @@ const Home = () => {
               <span className="text-3xl font-medium"> business needs </span>
             </h2>
             <p className="my-8 text-center text-gray-500 text-base px-4 md:px-20">
-              At <span className="font-bold">
-                    Meta Future Services pvt ltd
-                  </span> we take pride in crafting spaces that
-              inspire and empower. With a legacy of trust and excellence, we
-              specialize in delivering top-notch real estate solutions that
-              cater to your lifestyle and business needs. From premium
-              residences to iconic commercial hubs, we build more than
-              properties—we build relationships.
+              At <span className="font-bold">Meta Future Services pvt ltd</span>{" "}
+              we take pride in crafting spaces that inspire and empower. With a
+              legacy of trust and excellence, we specialize in delivering
+              top-notch real estate solutions that cater to your lifestyle and
+              business needs. From premium residences to iconic commercial hubs,
+              we build more than properties—we build relationships.
             </p>
 
             <div className="w-full md:w-1/2 px-4 mt-3">
@@ -123,9 +125,9 @@ const Home = () => {
                     src="https://vstechinfra.com/assets/images/icon/building.gif"
                     alt="Building Icon"
                     width="30px"
-                    className="mr-2"
+                    className="mr-2 uppercase"
                   />
-                  Our Identity
+                  Our specialty
                 </p>
                 <p
                   className="wow animate__animated animate__bounceInRight mt-4 text-base  text-start text-gray-500"
@@ -133,11 +135,11 @@ const Home = () => {
                 >
                   <span className="font-bold">
                     Meta Future Services pvt ltd
-                  </span> is building strong, connected
-                  communities while exceeding expectations. Think of us as the
-                  glue that keeps the three key parts of property
-                  management—owners, properties, and residents—running
-                  seamlessly at the highest level.
+                  </span>{" "}
+                  is building strong, connected communities while exceeding
+                  expectations. Think of us as the glue that keeps the three key
+                  parts of property management—owners, properties, and
+                  residents—running seamlessly at the highest level.
                 </p>
 
                 <p
@@ -146,14 +148,14 @@ const Home = () => {
                 >
                   <span className="font-bold">
                     Meta Future Services pvt ltd
-                  </span> is aware that the efficiency of solving
-                  tasks that face the corporation directly depends on the
-                  professionalism and motivation of our colleagues. Our team
-                  consists of highly skilled specialists in finance and,
-                  particularly, the real estate market; each of them has their
-                  unique understanding of the market, and together they create
-                  an absolute mechanism, which works ideally and is continuously
-                  perfected.
+                  </span>{" "}
+                  is aware that the efficiency of solving tasks that face the
+                  corporation directly depends on the professionalism and
+                  motivation of our colleagues. Our team consists of highly
+                  skilled specialists in finance and, particularly, the real
+                  estate market; each of them has their unique understanding of
+                  the market, and together they create an absolute mechanism,
+                  which works ideally and is continuously perfected.
                 </p>
               </div>
             </div>
@@ -182,7 +184,7 @@ const Home = () => {
                 WHY CHOOSE US
               </span>
               <span className=" text-4xl font-[300]">
-                Innovative and sustainable projects <br /> enhance lifestyles
+                We Believe In Innovative With Technology
               </span>
             </h3>
             <p className="my-2 text-center text-gray-500 text-base px-4 md:px-20">
@@ -253,7 +255,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="section-title text-center mb-8">
             <span className="text-[#284283] text-4xl uppercase font-[500] text-shadow">
-              Our Best Services
+              OUR SKU's
             </span>
             <p className="text-center mt-2 text-gray-500">
               Providing expert guidance to businesses and organizations to

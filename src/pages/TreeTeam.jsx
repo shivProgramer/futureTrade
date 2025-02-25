@@ -36,7 +36,9 @@ const TreeNode = React.memo(
             <div className="mt-1 text-center">
               <p>Wallet: {node.wallet}</p>
               <p>ROI Commission: {node.roi_comission}</p>
-              <p>DOJ: { moment(node.datetime).format("DD/MM/YYYY hh:mm:ss A") }</p>
+              <p>
+                DOJ: {moment(node.datetime).format("DD/MM/YYYY hh:mm:ss A")}
+              </p>
               <p>Self Payin: {node.self_payin}</p>
               <p>This Month Payin: {node.this_month_payin}</p>
             </div>
@@ -45,8 +47,9 @@ const TreeNode = React.memo(
 
         {/* Render Children */}
         {node.children && node.children.length > 0 && (
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 border-l border-gray-300 h-4"></div>
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2  border-gray-300 h-4"></div>
         )}
+        {/* border-l */}
         {node.children && node.children.length > 0 && (
           <ul className={`pl-5 relative ${level > 0 ? "mt-1" : ""}`}>
             {node.children.map((child) => (
@@ -62,8 +65,10 @@ const TreeNode = React.memo(
           </ul>
         )}
         {node.children && node.children.length > 0 && (
-          <div className="absolute top-0 right-1/2 transform -translate-x-1/2 border-l border-gray-300 h-4"></div>
+          <div className="absolute top-0 right-1/2 transform -translate-x-1/2  border-gray-300 h-4"></div>
         )}
+
+        {/* border-l */}
       </li>
     );
   }
@@ -129,7 +134,7 @@ const TreeStructure = () => {
       <div className="card bg-white rounded-lg h-full">
         <div className="card-body p-1 h-full">
           <div className="tree h-full">
-            <ul className="pl-5 relative">
+            {/* <ul className="pl-5 relative">
               {alltreedata?.map((node) => (
                 <TreeNode
                   key={node.user_id}
@@ -140,6 +145,22 @@ const TreeStructure = () => {
                   highlightedNodes={highlightedNodes}
                 />
               ))}
+            </ul> */}
+            <ul className="pl-5 relative">
+              {Array.isArray(alltreedata) ? (
+                alltreedata.map((node) => (
+                  <TreeNode
+                    key={node.user_id}
+                    node={node}
+                    level={0}
+                    hoveredNode={hoveredNode}
+                    setHoveredNode={setHoveredNode}
+                    highlightedNodes={highlightedNodes}
+                  />
+                ))
+              ) : (
+                <li>Loading data...</li> // Show a fallback message if data isn't an array
+              )}
             </ul>
           </div>
         </div>

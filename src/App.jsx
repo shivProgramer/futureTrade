@@ -56,6 +56,7 @@ function AppRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
+         
           <Route path="/view_buy_project_here" element={<Projects />} />
           <Route path="/media" element={<Media />} />
           <Route path="/contact" element={<ContactUs />} />

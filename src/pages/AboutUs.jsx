@@ -1,6 +1,10 @@
 
 import React from "react";
 import img from "../assets/asset 11.jpeg";
+import inovation_img from "../assets/inovation_img.jpeg";
+import quality from "../assets/quality2_img.png";
+import sustanablity from "../assets/sustanablity.jpeg";
+import intigrity from "../assets/intigrity2.jpeg";
 import about from "../assets/about_us.webp";
 import { MdOutlineEmail } from "react-icons/md";
 
@@ -84,25 +88,25 @@ const AboutUs = () => {
               {/* Core Value Items */}
               {[
                 {
-                  img: "https://vstechinfra.com/assets/images/about/01.png",
+                  img: inovation_img,
                   title: "Innovation",
                   description:
                     "Embracing the latest advancements in technology to deliver creative and future-ready solutions.",
                 },
                 {
-                  img: "https://vstechinfra.com/assets/images/about/02.png",
+                  img: quality,
                   title: "Quality",
                   description:
                     "Ensuring the highest level of quality across all our projects, with a focus on durability and performance.",
                 },
                 {
-                  img: "https://vstechinfra.com/assets/images/about/03.png",
+                  img: sustanablity,
                   title: "Sustainability",
                   description:
                     "Incorporating environmentally responsible practices to create lasting and positive impacts on the world.",
                 },
                 {
-                  img: "https://vstechinfra.com/assets/images/about/04.png",
+                  img: intigrity,
                   title: "Integrity",
                   description:
                     "Operating with transparency, honesty, and ethical practices in every project and interaction.",

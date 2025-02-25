@@ -164,6 +164,7 @@ const KYC_Verification = () => {
                   </button>
                 </div>
               )}
+              <div className="flex justify-evenly items-center"> 
               <div className="mt-4">
                 <input
                   type="file"
@@ -178,6 +179,23 @@ const KYC_Verification = () => {
                   Upload Aadhar Front Image
                 </label>
               </div>
+
+              <div className="mt-4">
+                <input
+                  type="file"
+                  // onChange={(e) => handleImageUpload(e, "aadhaarImg")}
+                  className="hidden"
+                  id="aadhaarImg"
+                />
+                <label
+                  htmlFor="aadhaarImg"
+                  className="w-full p-3 bg-green-600 rounded-md hover:bg-green-700 transition text-center cursor-pointer"
+                >
+                  Upload Aadhar back Image
+                </label>
+              </div>
+              </div>
+
             </div>
 
             {/* PAN Section */}

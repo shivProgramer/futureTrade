@@ -17,9 +17,9 @@ html, body {
 .choose-item {
     position: relative;
     overflow: auto;
-    background-color: #fff; /* Default background */
-    transition: transform 0.3s ease; /* Smooth scaling */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    background-color: #fff;
+    transition: transform 0.3s ease; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   }
   
   .choose-item::before {
@@ -29,7 +29,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, #f2d9ae ,#2e426e );
+    background: linear-gradient(to top, #8aa0f0 ,#2e426e );
     transform: translateY(100%);
     transition: transform 0.5s ease-in-out; /* Smooth background transition */
     z-index: 0; /* Behind the content */
@@ -87,97 +87,6 @@ body {
   font-family: Calibri, Segoe, "Segoe UI", "Gill Sans", "Gill Sans MT", sans-serif;
 }
 
-/* It's supposed to look like a tree diagram*****************************************************/
-/* .tree, .tree ul, .tree li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
-
-.tree {
-  margin: 0 0 1em;
-  text-align: center;
-}
-
-.tree ul {
-  display: table;
-  width: 100%;
-}
-
-.tree li {
-  display: table-cell;
-  padding: .5em 0;
-  vertical-align: top;
-  position: relative;
-}
-
-.tree li:before, .tree li:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 50%;
-  width: 50%;
-  height: 1em;
-  border-top: 1px solid #666;
-}
-
-.tree li:after {
-  right: auto;
-  left: 50%;
-  border-left: 1px solid #666;
-}
-
-.tree li:only-child:before, .tree li:only-child:after {
-  display: none;
-}
-
-.tree li:only-child {
-  padding-top: 0;
-}
-
-.tree li:first-child:before, .tree li:last-child:after {
-  border: 0 none;
-}
-
-.tree li:last-child:before {
-  border-right: 1px solid #666;
-  border-radius: 0 0 0 0;
-}
-
-.tree li:first-child:after {
-  border-radius: 0 0 0 0;
-}
-
-.tree ul ul:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 0;
-  border-left: 1px solid #666;
-}
-
-.tree li a {
-  display: inline-block;
-  border-radius: .2em;
-  padding: .2em .5em;
-  text-decoration: none;
-  color: #333;
-  background-color: #fff;
-  position: relative;
-}
-
-.tree li a:hover {
-  background-color: #f0f0f0;
-}
-
-.tree li a:hover + ul li a,
-.tree li a:hover + ul li::before,
-.tree li a:hover + ul li::after,
-.tree li a:hover + ul::before {
-  border-color: #94a0b4;
-} */
 
 
 .tree, .tree ul, .tree li {
@@ -277,3 +186,6 @@ body {
   background-color: #f0f0f0;
 }
 /* ------------------ -------------- tree end -------------   */
+
+
+

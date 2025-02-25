@@ -103,16 +103,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink
-                to="/comming"
-                className="block py-2 px-3 text-gray-700 border-r-2 font-normal text-sm border-gray-300 hover:bg-gray-100 transition-all duration-300"
-                onClick={closeMenu} // Close menu when clicked
-              >
-                Media
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/comming"
+                to="/contact"
                 className="block py-2 px-3 text-gray-700 border-r-2 font-normal text-sm border-gray-300 hover:bg-gray-100 transition-all duration-300"
                 onClick={closeMenu} // Close menu when clicked
               >
