@@ -13,21 +13,21 @@ const Footer = () => {
       className="text-white relative py-16 w-full"
       id="Contact"
       style={{
-        backgroundImage: `url(${bg})`,
+        backgroundImage: `url(${bg1})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
       }}
     >
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-20"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 ">
           {/* Column 1: Logo and Description */}
           <div className="text-center">
             <div>
-              <div className="mb-4">
+              <div className="mb-2">
                 <a href="#">
                   <img src={logo} alt="Logo" className="h-24 w-24 mx-auto rounded-full" />
                 </a>

@@ -21,7 +21,7 @@ const Carousel = () => {
       description: "A destination born out of the mindset to be exceptional...",
     },
     {
-      title: "Future trade pvt ltd .",
+      title: "Meta Future Services pvt ltd .",
       description:
         "we specialize in creating exceptional real estate experiences...",
     },
