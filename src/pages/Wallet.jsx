@@ -25,9 +25,10 @@ const Wallet = () => {
   );
   const loading = useSelector((state) => state.dashboard_profile?.loading);
 
+ 
   const handleWithdrawal = (item) => {
-    localStorage.setItem("amount", item);
-    nevigate("/admin/withdrawal");
+    localStorage.setItem("amount", item.amount); 
+    nevigate("/admin/withdrawal", { state: { type: item.type } }); 
   };
 
   const handleAddCash = () => {
@@ -43,10 +44,10 @@ const Wallet = () => {
 
   const data = [
     { title: "Deposits", amount: "₹0.00" },
-    { title: "ROI", amount: allProfileData?.roi_comission },
-    { title: "Salary", amount: allProfileData?.salary },
-    { title: "CashBack", amount: allProfileData?.cashback },
-    { title: "Bonus Reward", amount: allProfileData?.bonus },
+    { title: "ROI", amount: allProfileData?.roi_comission, type: 1 },
+    { title: "Salary", amount: allProfileData?.salary, type: 2 },
+    { title: "CashBack", amount: allProfileData?.cashback, type: 3 },
+    { title: "Bonus Reward", amount: allProfileData?.bonus, type: 4 },
   ];
 
   return (
@@ -98,7 +99,7 @@ const Wallet = () => {
                 ) : (
                   <button
                     className="bg-green-600 hover:bg-gray-800 text-white py-2 px-4 mt-4 rounded-md font-medium shadow-md"
-                    onClick={() => handleWithdrawal(item.amount)}
+                    onClick={() => handleWithdrawal(item)}
                   >
                     Withdraw
                   </button>
@@ -109,7 +110,10 @@ const Wallet = () => {
         </div>
 
         {/* Transaction History */}
-        <div className="bg-white border-t-2 border-gray-700 text-black mt-8 p-4 rounded-lg shadow-lg flex justify-between items-center"  onClick={handleTransaction}>
+        <div
+          className="bg-white border-t-2 border-gray-700 text-black mt-8 p-4 rounded-lg shadow-lg flex justify-between items-center"
+          onClick={handleTransaction}
+        >
           <div className="py-4">
             <h3 className="text-lg font-semibold">Transaction History</h3>
             {/* <div className="mt-4">

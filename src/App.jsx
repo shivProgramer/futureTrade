@@ -33,6 +33,7 @@ import AdminTermConditions from "./pages/AdminTermConditions";
 import Admin_Privacy from "./pages/Admin_Privacy";
 import TreeNode from "./pages/TreeTeam";
 import PasswordChange from "./components/PasswordChange";
+import Confetti from "./components/Confetti";
 function App() {
   return (
     <Router>
@@ -82,6 +83,7 @@ function AppRoutes() {
             <Route path="privacy" element={<Admin_Privacy />} />
             <Route path="term_conditions" element={<AdminTermConditions />} />
             <Route path="change-password" element={<PasswordChange />} />
+            <Route path="confiniti" element={<Confetti />} />
 
             <Route
               path="transaction-history"

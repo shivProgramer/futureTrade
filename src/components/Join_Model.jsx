@@ -3,8 +3,6 @@ import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import wallet from "../assets/wallet.json";
-import cashback from "../assets/projectsuccess.json";
-import join from "../assets/joinsucces.json";
 import Loader from "./Loader";
 import {
   CreateJoinProdect,
@@ -13,6 +11,7 @@ import {
 } from "../redux/slice/DashboardAndUser_slice";
 import { useDispatch, useSelector } from "react-redux";
 import { showToast } from "../utils/Config";
+import Confetti from "./Confetti";
 
 const Join_Model = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
@@ -27,6 +26,8 @@ const Join_Model = ({ isOpen, onClose }) => {
   const Prodectpackage = useSelector(
     (state) => state.dashboard_profile?.allJoinPacakge?.data
   );
+
+  console.log("Prodectpackage ---", Prodectpackage);
   const loading = useSelector((state) => state.DashboardAndUser_slice?.loading);
 
   const handleTransaction = () => {
@@ -50,14 +51,15 @@ const Join_Model = ({ isOpen, onClose }) => {
     try {
       const res = await dispatch(CreateJoinProdect(formData));
       if (res?.payload?.status === 200) {
-        showToast("Joined successfully", "success");
         setShowSuccessAnimation(true);
 
-        // Auto close modal after animation completes
         setTimeout(() => {
           setShowSuccessAnimation(false);
+        }, 3000);
+
+        setTimeout(() => {
           onClose();
-        }, 3000); // Wait for 3 seconds before closing
+        }, 2000);
       } else {
         showToast(res?.payload?.msg, "error");
       }
@@ -95,10 +97,13 @@ const Join_Model = ({ isOpen, onClose }) => {
             : "opacity-0 pointer-events-none"
         }`}
       >
+        {/* w-11/12 sm:w-[500px] max-w-full */}
         <div
-          className={`relative bg-[#1F2937] rounded-lg shadow-lg border-t-4 border-green-600 p-6 w-11/12 sm:w-[500px] max-w-full transform transition-all duration-700 ${
-            isOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"
-          }`}
+          className={`relative  rounded-lg shadow-lg border-t-4 border-green-600 p-6  transform transition-all duration-700 ${
+            showSuccessAnimation
+              ? "w-screen h-screen"
+              : "w-11/12 sm:w-[500px] bg-[#1F2937] max-w-full"
+          } ${isOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"}`}
         >
           <button
             className="absolute top-2 right-2 text-white text-2xl hover:text-gray-400"
@@ -108,17 +113,9 @@ const Join_Model = ({ isOpen, onClose }) => {
           </button>
 
           {showSuccessAnimation ? (
-            // Show success animation before closing
-            // <div className="flex items-center justify-center">
-            //   <Lottie animationData={join} style={{ width: "300px", height: "300px" }} />
-            // </div>
-            <div className="flex items-center justify-center">
-              <img
-                src="https://user-images.githubusercontent.com/5460067/111782964-0c6bed80-8890-11eb-8a8b-0a4fdbc30cbd.gif"
-                alt="Animated GIF"
-                className="w-[300px] h-[300px]"
-              />
-            </div>
+            <>
+              <Confetti />
+            </>
           ) : (
             <>
               <h2 className="text-white text-lg font-bold mb-4">
@@ -167,6 +164,7 @@ const Join_Model = ({ isOpen, onClose }) => {
                 <label className="text-gray-300 block mb-2">
                   Packages: <span className="text-red-600 ml-1"> * </span>
                 </label>
+               
                 <select
                   className="bg-gray-800 text-white px-4 py-2 w-full rounded-md"
                   value={selectedPackage}
@@ -175,12 +173,8 @@ const Join_Model = ({ isOpen, onClose }) => {
                   <option value="">Select</option>
                   {Prodectpackage &&
                     Prodectpackage.map((ele, index) => (
-                      <option
-                        className="flex justify-between items-center"
-                        key={index}
-                        value={ele.id}
-                      >
-                        {ele?.product_name}
+                      <option key={index} value={ele.id}>
+                        {`${ele?.product_name}  |  Price: ₹${ele?.product_price}`}
                       </option>
                     ))}
                 </select>
@@ -201,3 +195,4 @@ const Join_Model = ({ isOpen, onClose }) => {
 };
 
 export default Join_Model;
+

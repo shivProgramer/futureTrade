@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/sidebarlogo2.gif";
+import logo from "../assets/sidebarNewLogo.gif";
 import wallet from "../assets/wallet.json";
 import home from "../assets/home.json";
 import Fund from "../assets/fund.json";
@@ -86,7 +86,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <img
             src={logo}
             alt="VS Logo"
-            className="w-28 h-28 my-1 mx-auto"
+            className="w-36 h-36 my-1 mx-auto"
           />
         </h2>
         <ul className="mt-10">

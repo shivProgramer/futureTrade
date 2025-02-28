@@ -2,19 +2,28 @@ import React, { useState, useEffect } from "react";
 import { withdrawal } from "../redux/slice/Wallet_slice";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
+import { useLocation, useNavigate } from "react-router-dom";
+import { showToast } from "../utils/Config";
 
 const Withdrawal = () => {
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showContent, setShowContent] = useState(false); 
+  const [showContent, setShowContent] = useState(false);
   const dispatch = useDispatch();
   const userData = JSON.parse(localStorage.getItem("userData"));
   const predefinedAmounts = [300, 500, 1000, 2000, 5000, 10000, 49999];
-
   const loading = useSelector((state) => state.Wallet?.loading);
+  const balance = JSON.parse(localStorage.getItem("amount"));
+  const nevigate = useNavigate();
+  const location = useLocation();
+  const type = location.state?.type;
 
-  const balance = JSON.parse(localStorage.getItem("amount"))
+  console.log("type ---", type);
+  console.log("password ---", password);
+  console.log("withdrawAmount ---", withdrawAmount);
+  console.log("userData ---", userData?.user_id);
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowContent(true);
@@ -33,8 +42,16 @@ const Withdrawal = () => {
           user_id: userData?.user_id,
           amount: withdrawAmount,
           pass: password,
+          type:type
         })
       );
+      if(res?.payload?.status == 400){
+        showToast(res?.payload?.msg, "error")
+      }else{
+        showToast(res?.payload?.msg, "success")
+        nevigate("/admin/wallet"); 
+      }
+      
       console.log("Response in withdrawal:", res);
     } catch (error) {
       console.log("Error:", error);
@@ -50,7 +67,6 @@ const Withdrawal = () => {
         <header className="w-full bg-gradient-to-r from-blue-500 to-blue-600 py-4 flex items-center justify-between px-6">
           <h1 className="text-xl font-semibold text-white">Withdrawal</h1>
         </header>
-
         {/* Balance Section */}
         <section
           className={`my-6 text-center transition-all duration-500 ease-in-out transform ${
@@ -103,6 +119,7 @@ const Withdrawal = () => {
                   onChange={(e) => setWithdrawAmount(e.target.value)}
                   placeholder="Enter Withdraw Amount"
                   className="w-full p-3 pl-12 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+                  required
                 />
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">
                   ₹
@@ -121,6 +138,7 @@ const Withdrawal = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter Password"
                   className="w-full p-3 pl-12 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+                  required
                 />
                 <button
                   type="button"

@@ -20,10 +20,13 @@ const KYC_Verification = () => {
     panImg: "",
   });
 
+  console.log("formData ----- ", formData);
+
   // get data from redux
   const allkycdata = useSelector((state) => state.kyc?.keydata?.data);
   const loading = useSelector((state) => state.kyc?.loading);
 
+  console.log("allkycdata ----", allkycdata);
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
@@ -35,7 +38,11 @@ const KYC_Verification = () => {
       aadhaarImg: allkycdata?.aadhaar_img
         ? `${API_URL_Img}${allkycdata?.aadhaar_img}`
         : "",
-      panImg: allkycdata?.pan_img ? `${API_URL_Img}${allkycdata?.pan_img}` : "",
+      // aadhaarImg: allkycdata?.aadhaar_img ? `${allkycdata?.aadhaar_img}` : "",
+      // panImg: allkycdata?.pan_img ? `${allkycdata?.pan_img}` : "",
+      panImg: allkycdata?.pan_img
+        ? `${API_URL_Img}${allkycdata?.pan_img}`
+        : "",
     }));
   }, [allkycdata]);
 
@@ -153,9 +160,21 @@ const KYC_Verification = () => {
                 <div className="relative mt-4 inline-block">
                   <img
                     src={formData?.aadhaarImg}
+                    
                     alt="Aadhar"
                     className="w-32 h-20 rounded-md"
                   />
+                  {/* <img
+                    src={
+                      formData?.aadhaarImg
+                        ? formData?.aadhaarImg
+                        : allkycdata?.aadhaar_img
+                        ? `${API_URL_Img}${allkycdata?.aadhaar_img}`
+                        : ""
+                    }
+                    alt="Aadhar"
+                    className="w-32 h-20 rounded-md"
+                  /> */}
                   <button
                     onClick={() => removeImage("aadhaarImg")}
                     className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center"
@@ -164,23 +183,23 @@ const KYC_Verification = () => {
                   </button>
                 </div>
               )}
-              <div className="flex justify-evenly items-center"> 
-              <div className="mt-4">
-                <input
-                  type="file"
-                  onChange={(e) => handleImageUpload(e, "aadhaarImg")}
-                  className="hidden"
-                  id="aadhaarImg"
-                />
-                <label
-                  htmlFor="aadhaarImg"
-                  className="w-full p-3 bg-green-600 rounded-md hover:bg-green-700 transition text-center cursor-pointer"
-                >
-                  Upload Aadhar Front Image
-                </label>
-              </div>
+              <div className="flex justify-evenly items-center">
+                <div className="mt-4">
+                  <input
+                    type="file"
+                    onChange={(e) => handleImageUpload(e, "aadhaarImg")}
+                    className="hidden"
+                    id="aadhaarImg"
+                  />
+                  <label
+                    htmlFor="aadhaarImg"
+                    className="w-full p-3 bg-green-600 rounded-md hover:bg-green-700 transition text-center cursor-pointer"
+                  >
+                    Upload Aadhar Front Image
+                  </label>
+                </div>
 
-              <div className="mt-4">
+                {/* <div className="mt-4">
                 <input
                   type="file"
                   // onChange={(e) => handleImageUpload(e, "aadhaarImg")}
@@ -193,9 +212,8 @@ const KYC_Verification = () => {
                 >
                   Upload Aadhar back Image
                 </label>
+              </div> */}
               </div>
-              </div>
-
             </div>
 
             {/* PAN Section */}
@@ -233,9 +251,22 @@ const KYC_Verification = () => {
                 <div className="relative mt-4 inline-block">
                   <img
                     src={formData?.panImg}
+                    
                     alt="PAN"
                     className="w-32 h-20 rounded-md"
                   />
+                  {/* <img
+                    src={
+                      formData?.panImg
+                        ? formData?.panImg
+                        : allkycdata?.aadhaar_img
+                        ? `${API_URL_Img}${allkycdata?.panImg}`
+                        : ""
+                    }
+                    alt="Aadhar"
+                    className="w-32 h-20 rounded-md"
+                  /> */}
+
                   <button
                     onClick={() => removeImage("panImg")}
                     className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center"

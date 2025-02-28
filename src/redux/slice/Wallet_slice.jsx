@@ -37,10 +37,10 @@ export const Createpayin = createAsyncThunk(
 
 export const withdrawal = createAsyncThunk(
   "withdrawal",
-  async ({ user_id, amount, pass }, thunkAPI) => {
+  async ({ user_id, amount, pass,type }, thunkAPI) => {
     try {
       const response = await axiosInstance.get(
-        `withdrawal?user_id=${user_id}&amount=${amount}&password=${pass}`
+        `withdrawal?user_id=${user_id}&amount=${amount}&password=${pass}&type=${type}`
       );
       return response.data;
     } catch (error) {

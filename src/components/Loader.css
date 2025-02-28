@@ -1,0 +1,40 @@
+/* Prevent scrolling when the loader is active */
+.no-scroll {
+    overflow: hidden;
+  }
+  
+  /* Overlay styling */
+  .loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other content */
+  }
+  
+  /* Loader content styling */
+  .loader-content {
+    text-align: center;
+  }
+  
+  /* Rotating image animation */
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .rotating-image {
+    width: 200px; /* Adjust size as needed */
+    height: 136px; /* Adjust size as needed */
+    animation: rotate 1s linear infinite; /* Rotate continuously */
+    opacity:0.7
+  }
